@@ -1,0 +1,451 @@
+{
+  "_lisezmoi": "Every legal value used by the engine and quoted in the pages lives here, never in the code or the text (RECETTE §4, §17.4). Each block names its source key; every value was read on the official page on retrieved_at. Bands are [upper limit of the band in GBP or null for the top band, rate as a fraction].",
+  "year": 2026,
+  "retrieved_at": "2026-10-05",
+  "valid_from": "2025-04-01",
+  "valid_to": null,
+  "sdlt": {
+    "_source": [
+      "govSdltRates",
+      "govSdltHigher",
+      "govSdltCorporate",
+      "ootlar2025",
+      "fa2003"
+    ],
+    "nations": "England and Northern Ireland",
+    "effective_from": "2025-04-01",
+    "residential": [
+      [
+        125000,
+        0
+      ],
+      [
+        250000,
+        0.02
+      ],
+      [
+        925000,
+        0.05
+      ],
+      [
+        1500000,
+        0.1
+      ],
+      [
+        null,
+        0.12
+      ]
+    ],
+    "first_time_buyer": [
+      [
+        300000,
+        0
+      ],
+      [
+        500000,
+        0.05
+      ]
+    ],
+    "first_time_buyer_max_price": 500000,
+    "higher_rates_surcharge": 0.05,
+    "higher_rates_from": "2024-10-31",
+    "higher_rates_min_price": 40000,
+    "non_resident_surcharge": 0.02,
+    "non_resident_from": "2021-04-01",
+    "non_resident_days": 183,
+    "corporate_flat_rate": 0.17,
+    "corporate_flat_threshold": 500000,
+    "non_residential": [
+      [
+        150000,
+        0
+      ],
+      [
+        250000,
+        0.02
+      ],
+      [
+        null,
+        0.05
+      ]
+    ],
+    "lease_npv_residential_threshold": 125000,
+    "lease_npv_residential_rate": 0.01,
+    "return_days": 14,
+    "replace_main_residence_years": 3,
+    "refund_claim_months": 12,
+    "non_resident_refund_years": 2,
+    "shared_ownership_staircasing_return_share": 0.8,
+    "inherited_share_max": 0.5,
+    "inherited_years": 3,
+    "previous": {
+      "_source": [
+        "govSdltPrevious"
+      ],
+      "period": "23 September 2022 to 31 March 2025",
+      "effective_to": "2025-03-31",
+      "residential": [
+        [
+          250000,
+          0
+        ],
+        [
+          925000,
+          0.05
+        ],
+        [
+          1500000,
+          0.1
+        ],
+        [
+          null,
+          0.12
+        ]
+      ],
+      "first_time_buyer": [
+        [
+          425000,
+          0
+        ],
+        [
+          625000,
+          0.05
+        ]
+      ],
+      "first_time_buyer_max_price": 625000,
+      "higher_rates_surcharge_before_31_october_2024": 0.03,
+      "corporate_flat_rate_before_31_october_2024": 0.15
+    },
+    "amend_months": 12,
+    "penalty_fixed_first": 100,
+    "penalty_fixed_after_3_months": 200,
+    "penalty_tax_geared_after_months": 12,
+    "freehold_no_return_below": 40000,
+    "dwellings_nonresidential_from": 6
+  },
+  "lbtt": {
+    "_source": [
+      "rsResidential",
+      "rsAds",
+      "rsAdsRepayment",
+      "rsFtb",
+      "rsNonResidential",
+      "lbttAct"
+    ],
+    "nations": "Scotland",
+    "residential_from": "2021-04-01",
+    "residential": [
+      [
+        145000,
+        0
+      ],
+      [
+        250000,
+        0.02
+      ],
+      [
+        325000,
+        0.05
+      ],
+      [
+        750000,
+        0.1
+      ],
+      [
+        null,
+        0.12
+      ]
+    ],
+    "first_time_buyer_nil_band": 175000,
+    "first_time_buyer_max_saving": 600,
+    "ads_rate": 0.08,
+    "ads_from": "2024-12-05",
+    "ads_previous_rate": 0.06,
+    "ads_min_price": 40000,
+    "non_residential": [
+      [
+        150000,
+        0
+      ],
+      [
+        250000,
+        0.01
+      ],
+      [
+        null,
+        0.05
+      ]
+    ],
+    "return_days": 30,
+    "replace_main_residence_months": 36,
+    "amend_months": 12,
+    "overpayment_claim_years": 5,
+    "repayment_target_working_days": 10,
+    "ads_share_ignored_below": 40000
+  },
+  "ltt": {
+    "_source": [
+      "wraRates",
+      "wraHigher",
+      "wraGuide",
+      "wraRefund",
+      "lttAct"
+    ],
+    "nations": "Wales",
+    "main_from": "2022-10-10",
+    "main": [
+      [
+        225000,
+        0
+      ],
+      [
+        400000,
+        0.06
+      ],
+      [
+        750000,
+        0.075
+      ],
+      [
+        1500000,
+        0.1
+      ],
+      [
+        null,
+        0.12
+      ]
+    ],
+    "higher_from": "2024-12-11",
+    "higher": [
+      [
+        180000,
+        0.05
+      ],
+      [
+        250000,
+        0.085
+      ],
+      [
+        400000,
+        0.1
+      ],
+      [
+        750000,
+        0.125
+      ],
+      [
+        1500000,
+        0.15
+      ],
+      [
+        null,
+        0.17
+      ]
+    ],
+    "higher_min_price": 40000,
+    "first_time_buyer_relief": false,
+    "non_residential": [
+      [
+        225000,
+        0
+      ],
+      [
+        250000,
+        0.01
+      ],
+      [
+        1000000,
+        0.05
+      ],
+      [
+        null,
+        0.06
+      ]
+    ],
+    "return_days": 30,
+    "replace_main_residence_years": 3,
+    "amend_months": 12,
+    "refund_claim_years": 4,
+    "refund_processing_working_days": "15 to 20",
+    "higher_previous": [
+      [
+        180000,
+        0.04
+      ],
+      [
+        250000,
+        0.075
+      ],
+      [
+        400000,
+        0.09
+      ],
+      [
+        750000,
+        0.115
+      ],
+      [
+        1500000,
+        0.14
+      ],
+      [
+        null,
+        0.16
+      ]
+    ],
+    "higher_previous_period": "22 December 2020 to 10 December 2024"
+  },
+  "hpi": {
+    "_source": [
+      "ukhpi"
+    ],
+    "month": "2026-07",
+    "note": "Averages from the UK House Price Index for July 2026, published by HM Land Registry in September 2026. Recent months are revised as late registrations arrive."
+  },
+  "sources": {
+    "govSdltRates": {
+      "url": "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
+      "label": "GOV.UK, Stamp Duty Land Tax: residential property rates (rates from 1 April 2025)"
+    },
+    "govSdltOverview": {
+      "url": "https://www.gov.uk/stamp-duty-land-tax",
+      "label": "GOV.UK, Stamp Duty Land Tax: overview, thresholds and 14-day return"
+    },
+    "govSdltHigher": {
+      "url": "https://www.gov.uk/guidance/stamp-duty-land-tax-buying-an-additional-residential-property",
+      "label": "HMRC, Higher rates of Stamp Duty Land Tax (updated 1 April 2025)"
+    },
+    "govSdltCorporate": {
+      "url": "https://www.gov.uk/guidance/stamp-duty-land-tax-corporate-bodies",
+      "label": "HMRC, Stamp Duty Land Tax: corporate bodies (17% rate)"
+    },
+    "govSdltSharedOwnership": {
+      "url": "https://www.gov.uk/stamp-duty-land-tax/shared-ownership-property",
+      "label": "GOV.UK, Stamp Duty Land Tax: shared ownership property"
+    },
+    "govSdltReliefs": {
+      "url": "https://www.gov.uk/stamp-duty-land-tax/reliefs-and-exemptions",
+      "label": "GOV.UK, Stamp Duty Land Tax: reliefs and exemptions"
+    },
+    "govSdltRefunds": {
+      "url": "https://www.gov.uk/stamp-duty-land-tax/refunds-of-stamp-duty-land-tax",
+      "label": "GOV.UK, Refunds of Stamp Duty Land Tax"
+    },
+    "govSdltTransfers": {
+      "url": "https://www.gov.uk/stamp-duty-land-tax/land-and-property-transfers",
+      "label": "GOV.UK, Stamp Duty Land Tax: land and property transfers"
+    },
+    "govSdltNonRes": {
+      "url": "https://www.gov.uk/stamp-duty-land-tax/nonresidential-and-mixed-rates",
+      "label": "GOV.UK, Stamp Duty Land Tax: non-residential and mixed land and property rates"
+    },
+    "govSdltPrevious": {
+      "url": "https://www.gov.uk/government/publications/rates-and-allowances-stamp-duty-land-tax/stamp-duty-land-tax-rates-31-october-2024-to-31-march-2025",
+      "label": "HMRC, Stamp Duty Land Tax rates: 31 October 2024 to 31 March 2025"
+    },
+    "hmrcCalculator": {
+      "url": "https://www.tax.service.gov.uk/calculate-stamp-duty-land-tax/",
+      "label": "HMRC, Stamp Duty Land Tax calculator"
+    },
+    "sdltmNonResident": {
+      "url": "https://www.gov.uk/hmrc-internal-manuals/stamp-duty-land-tax-manual/sdltm09850a",
+      "label": "HMRC Stamp Duty Land Tax Manual, SDLTM09850A: non-resident surcharge"
+    },
+    "sdltmNonResSpouse": {
+      "url": "https://www.gov.uk/hmrc-internal-manuals/stamp-duty-land-tax-manual/sdltm09885",
+      "label": "HMRC Stamp Duty Land Tax Manual, SDLTM09885: spouses and civil partners of UK residents"
+    },
+    "sdltmNonResRefund": {
+      "url": "https://www.gov.uk/hmrc-internal-manuals/stamp-duty-land-tax-manual/sdltm09960",
+      "label": "HMRC Stamp Duty Land Tax Manual, SDLTM09960: becoming UK resident after the return"
+    },
+    "sdltmFtb": {
+      "url": "https://www.gov.uk/hmrc-internal-manuals/stamp-duty-land-tax-manual/sdltm29845",
+      "label": "HMRC Stamp Duty Land Tax Manual, SDLTM29845: definition of a first-time buyer"
+    },
+    "sdltmFtbShared": {
+      "url": "https://www.gov.uk/hmrc-internal-manuals/stamp-duty-land-tax-manual/sdltm29880",
+      "label": "HMRC Stamp Duty Land Tax Manual, SDLTM29880: first-time buyers and the market value election"
+    },
+    "sdltmInherited": {
+      "url": "https://www.gov.uk/hmrc-internal-manuals/stamp-duty-land-tax-manual/sdltm09795",
+      "label": "HMRC Stamp Duty Land Tax Manual, SDLTM09795: interests inherited in the last three years"
+    },
+    "ootlar2025": {
+      "url": "https://www.gov.uk/government/publications/budget-2025-overview-of-tax-legislation-and-rates-ootlar/annex-a-rates-and-allowances",
+      "label": "HM Treasury and HMRC, Budget 2025 overview of tax legislation and rates, Annex A"
+    },
+    "fa2003": {
+      "url": "https://www.legislation.gov.uk/ukpga/2003/14/schedule/4ZA",
+      "label": "Finance Act 2003, Schedule 4ZA (higher rates for additional dwellings)"
+    },
+    "fa2003s55": {
+      "url": "https://www.legislation.gov.uk/ukpga/2003/14/section/55",
+      "label": "Finance Act 2003, section 55 (amount of tax chargeable)"
+    },
+    "rsResidential": {
+      "url": "https://revenue.scot/taxes/land-buildings-transaction-tax/residential-property",
+      "label": "Revenue Scotland, LBTT residential property rates and bands"
+    },
+    "rsAds": {
+      "url": "https://revenue.scot/taxes/land-buildings-transaction-tax/additional-dwelling-supplement-ads",
+      "label": "Revenue Scotland, The Additional Dwelling Supplement (ADS)"
+    },
+    "rsAdsRepayment": {
+      "url": "https://revenue.scot/taxes/land-buildings-transaction-tax/lbtt-legislation-guidance/additional-dwelling-supplement-ads-technical/ads-return-payment-amendments",
+      "label": "Revenue Scotland, LBTT10070: ADS repayment claims"
+    },
+    "rsFtb": {
+      "url": "https://revenue.scot/taxes/land-buildings-transaction-tax/lbtt-legislation-guidance/lbtt3001-exemptions-reliefs/lbtt3010-tax-reliefs/lbtt3048-first-time-buyer-relief",
+      "label": "Revenue Scotland, LBTT3048: first-time buyer relief"
+    },
+    "rsNonResidential": {
+      "url": "https://revenue.scot/taxes/land-buildings-transaction-tax/non-residential-property",
+      "label": "Revenue Scotland, LBTT non-residential property rates"
+    },
+    "rsCalculator": {
+      "url": "https://revenue.scot/calculate-tax/calculate-property-transactions",
+      "label": "Revenue Scotland, LBTT calculator"
+    },
+    "lbttAct": {
+      "url": "https://www.legislation.gov.uk/asp/2013/11/schedule/2A",
+      "label": "Land and Buildings Transaction Tax (Scotland) Act 2013, Schedule 2A (ADS)"
+    },
+    "wraRates": {
+      "url": "https://www.gov.wales/land-transaction-tax-rates-and-bands",
+      "label": "Welsh Revenue Authority, Land Transaction Tax rates and bands"
+    },
+    "wraHigher": {
+      "url": "https://www.gov.wales/higher-rates-land-transaction-tax-overview",
+      "label": "Welsh Revenue Authority, Higher rates of Land Transaction Tax: overview (updated 27 August 2025)"
+    },
+    "wraHigherTech": {
+      "url": "https://www.gov.wales/higher-rates-purchases-residential-property-technical-guidance",
+      "label": "Welsh Revenue Authority, Higher rates technical guidance"
+    },
+    "wraGuide": {
+      "url": "https://www.gov.wales/land-transaction-tax-guide",
+      "label": "Welsh Revenue Authority, Land Transaction Tax: overview (no first-time buyer relief, 30-day return)"
+    },
+    "wraRefund": {
+      "url": "https://www.gov.wales/claim-refund-land-transaction-tax-higher-rates",
+      "label": "Welsh Revenue Authority, Claim a refund of Land Transaction Tax higher rates"
+    },
+    "wraCalculator": {
+      "url": "https://www.gov.wales/land-transaction-tax-calculator",
+      "label": "Welsh Revenue Authority, Land Transaction Tax calculator"
+    },
+    "lttAct": {
+      "url": "https://www.legislation.gov.uk/anaw/2017/1/schedule/5",
+      "label": "Land Transaction Tax and Anti-avoidance of Devolved Taxes (Wales) Act 2017, Schedule 5 (higher rates)"
+    },
+    "ukhpi": {
+      "url": "https://landregistry.data.gov.uk/app/ukhpi",
+      "label": "HM Land Registry, UK House Price Index (July 2026 data)"
+    },
+    "govSdltPenalties": {
+      "url": "https://www.gov.uk/guidance/penalties-and-interest-on-a-late-stamp-duty-land-tax-return",
+      "label": "HMRC, Penalties and interest on a late Stamp Duty Land Tax return (updated 26 June 2026)"
+    }
+  }
+}

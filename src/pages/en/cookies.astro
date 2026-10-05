@@ -1,0 +1,14 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { CONTACT_EMAIL, LAST_UPDATED, SITE_NAMES } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+const lang = 'en';
+---
+<PageLayout title={`Cookies on ${SITE_NAMES[lang]}: none set by the calculator`} description="This stamp duty calculator sets no cookie: it runs in your browser and loads no analytics or advertising. What would change, and how you would be asked, if that ever changed." lang={lang} noindex={true} breadcrumbs={[{ label: 'Cookies' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none prose-headings:font-serif">
+    <h1>Cookies</h1>
+    <p>The calculators work without cookies. No analytics, advertising or social network script is loaded today, so your browser receives nothing from us to store.</p>
+    <h2>If that changes</h2><p>Should audience measurement or advertising be added, a banner will tell you before anything loads and will let you refuse or change your mind later; this page will then list each cookie, its purpose and its lifetime, as the Privacy and Electronic Communications Regulations require in the UK.</p>
+    <p>More in the <a href={route('privacy', lang)}>privacy policy</a>. Questions: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. Updated: {LAST_UPDATED}.</p>
+  </div>
+</PageLayout>

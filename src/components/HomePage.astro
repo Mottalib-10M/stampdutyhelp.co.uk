@@ -1,0 +1,36 @@
+---
+/**
+ * Home (pillar page, RECETTE §5). Its own order, built for this subject: the three-nation calculator
+ * first, then the answer block, then the three regimes side by side, the situations with their own
+ * figure, the average home city by city, the long text folded, and the FAQ. Text in src/content/home.ts.
+ */
+import PageLayout from '../layouts/PageLayout.astro';
+import Clamp from './Clamp.astro';
+import StampDutyCalculator from './calc/StampDutyCalculator';
+import { HOME } from '../content/home';
+import { route } from '../i18n/routes';
+import { helpers } from '../lib/helpers';
+import { SOURCES, type SourceKey } from '../lib/engine/params';
+import { faqSchema, organizationSchema, websiteSchema, webPageSchema, webApplicationSchema } from '../lib/seo';
+import { LAST_UPDATED } from '../data/site-config';
+import { displayDate } from '../lib/format';
+const lang = 'en';
+const x = HOME;
+const path = route('home', lang);
+const h = helpers();
+const keys: SourceKey[] = ['govSdltRates', 'govSdltHigher', 'govSdltCorporate', 'sdltmNonResident', 'rsResidential', 'rsAds', 'rsFtb', 'wraRates', 'wraHigher', 'wraGuide', 'ukhpi'];
+const sources = keys.map((k) => ({ name: SOURCES[k].label, url: SOURCES[k].url }));
+const jsonLd = [websiteSchema(lang), organizationSchema(lang), webPageSchema({ name: x.h1, description: x.description, path, lang }), webApplicationSchema({ name: x.h1, description: x.description, path, lang }), faqSchema(x.faqs, lang)];
+---
+<PageLayout title={x.title} description={x.description} lang={lang} jsonLd={jsonLd} faqs={x.faqs} sources={sources}>
+  <header class="mb-4">
+    <h1 class="font-serif text-3xl font-bold text-navy-900 md:text-4xl">{x.h1}</h1>
+    <p class="mt-3 text-lg text-navy-700">{x.intro}</p>
+    <p class="mt-2 text-sm text-navy-600">Official bands of HMRC, Revenue Scotland and the Welsh Revenue Authority, checked on <time datetime={LAST_UPDATED}>{displayDate(LAST_UPDATED, 'en-GB')}</time> · <a href={route('method', lang)} class="underline">How we calculate</a> · <a href={route('about', lang)} class="underline">About this site</a></p>
+  </header>
+  <StampDutyCalculator client:load methodHref={route('method', lang)} idPrefix="home" />
+  <Clamp text={x.resume} lang={lang} id="clamp-home" sentences={2} class="mb-8" />
+  <div class="prose prose-slate max-w-none prose-headings:font-serif">
+    <Fragment set:html={x.body(h)} />
+  </div>
+</PageLayout>

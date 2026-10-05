@@ -1,0 +1,25 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import LegalIdentity from '../../components/LegalIdentity.astro';
+import { AUTHOR_NAME, CONTACT_EMAIL, LAST_UPDATED, LEGAL, SITE_NAMES, SITE_URL } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+const lang = 'en';
+---
+<PageLayout title={`Legal notice of ${SITE_NAMES[lang]}: publisher, host, liability`} description="Publisher, publication director and host of this UK stamp duty calculator, the limits of an estimate, intellectual property, embedding terms and the law that governs the site." lang={lang} noindex={true} breadcrumbs={[{ label: 'Legal notice' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none prose-headings:font-serif">
+    <h1>Legal notice</h1>
+    <p>Information given under Article 6 III-1 of French law no. 2004-575 of 21 June 2004 (the publisher is established in France).</p>
+    <h2>Publisher</h2>
+    <LegalIdentity lang={lang} />
+    <p>Publication director: {AUTHOR_NAME}, responsible for the content of {SITE_URL}.</p>
+    <h2>Host</h2>
+    <LegalIdentity mode="hosting" lang={lang} />
+    <h2>An estimate, not advice</h2>
+    <p>The calculators apply the published rates of Stamp Duty Land Tax, Land and Buildings Transaction Tax and Land Transaction Tax to the facts you enter. They are not legal or tax advice. Reliefs, linked transactions, leases with rent and many special cases need a professional reading of the facts; the return is the buyer’s responsibility and HMRC, Revenue Scotland or the Welsh Revenue Authority decide. The site is independent of all three. Method and limits: <a href={route('method', lang)}>method page</a>.</p>
+    <h2>Liability</h2><p>Rates are re-read at their sources and the engine is tested at every release, without any guarantee that no error remains. The publisher is not liable for a decision taken on an estimate alone. Report errors through the <a href={route('contact', lang)}>contact page</a>.</p>
+    <h2>Intellectual property</h2><p>Texts, design and code belong to the publisher; short quotations with a link are welcome. Rates quoted from GOV.UK and gov.wales are Crown copyright under the Open Government Licence; UK House Price Index data is reused under the same licence.</p>
+    <h2>Embedding</h2><p>The calculator may be embedded free of charge with its credit link visible: see the <a href={route('widget', lang)}>embed page</a>.</p>
+    <h2>Unlawful content</h2><p>Report it to <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> with the address of the page.</p>
+    <h2>Governing law</h2><p>French law; failing an amicable settlement, the courts of {LEGAL.jurisdiction}. Updated: {LAST_UPDATED}.</p>
+  </div>
+</PageLayout>

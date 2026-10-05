@@ -1,0 +1,72 @@
+---
+/**
+ * Renders a page of `src/content/pages/`. Order (RECETTE §9.3, §21): H1 and one-line intro; tool page:
+ * the tool, then the folded answer block; guide: the answer block, then its mini-simulator, then the body.
+ * FAQ (shown and marked up from the same list), related pages, sources and publisher box come from PageLayout.
+ */
+import PageLayout from '../layouts/PageLayout.astro';
+import MiniSim from './calc/MiniSim';
+import Clamp from './Clamp.astro';
+import StampDutyCalculator from './calc/StampDutyCalculator';
+import AreaTable from './calc/AreaTable';
+import JointTool from './calc/JointTool';
+import SharedTool from './calc/SharedTool';
+import RefundTool from './calc/RefundTool';
+import TransferTool from './calc/TransferTool';
+import { route, ROUTES } from '../i18n/routes';
+import { label, GROUP_LABEL } from '../i18n/nav';
+import { t } from '../i18n/ui';
+import { pageById } from '../lib/pages';
+import { place as hpiPlace, taxNation } from '../lib/hpi';
+import { helpers } from '../lib/helpers';
+import { SOURCES } from '../lib/engine/params';
+import { articleSchema, faqSchema, breadcrumbSchema, webPageSchema, webApplicationSchema } from '../lib/seo';
+import { AUTHOR_NAME } from '../data/site-config';
+import type { PageDef } from '../lib/page-types';
+interface Props { page: PageDef }
+const { page } = Astro.props;
+const lang = 'en';
+const ui = t(lang);
+const path = route(page.id, lang);
+const parts = page.body(helpers()).split(/<!--mini:([A-Za-z0-9_-]+)-->/);
+const jsonLd = [articleSchema({ title: page.h1, description: page.description, path, lang }), webPageSchema({ name: page.h1, description: page.description, path, lang }), breadcrumbSchema([{ name: ui.breadcrumbHome, path: route('home', lang) }, { name: page.nav, path }])];
+if (page.tool) jsonLd.push(webApplicationSchema({ name: page.h1, description: page.description, path, lang }));
+if (page.faqs.length) jsonLd.push(faqSchema(page.faqs, lang));
+const related = page.related.filter((id) => ROUTES.some((r) => r.id === id)).map((id) => ({ href: route(id, lang), name: label(id), description: pageById(id)?.card ?? '' }));
+const sources = page.sources.map((k) => ({ name: SOURCES[k].label, url: SOURCES[k].url }));
+const methodHref = route('method', lang);
+const miniHref = route(page.miniHref && ROUTES.some((r) => r.id === page.miniHref) ? page.miniHref : 'home', lang);
+const pl = page.place ? hpiPlace(page.place) : null;
+const tp = { ...(page.toolProps ?? {}), ...(pl ? { price: pl.avg, nation: taxNation(pl) } : {}) };
+---
+<PageLayout title={page.title} description={page.description} lang={lang} jsonLd={jsonLd} faqs={page.faqs} related={related} sources={sources} breadcrumbs={[{ label: page.nav }]}>
+  <article>
+    <header class="mb-6">
+      <p class="text-sm font-semibold uppercase tracking-wide text-accent-700">{GROUP_LABEL[page.group]}</p>
+      <h1 class="mt-1 font-serif text-3xl font-bold text-navy-900 md:text-4xl">{page.h1}</h1>
+      <p class="mt-3 text-lg text-navy-700">{page.intro}</p>
+      <p class="mt-3 text-sm text-navy-600">{ui.reviewedBy} <a href={route('about', lang)} class="underline hover:text-navy-900">{AUTHOR_NAME}</a> · <a href={route('editorial', lang)} class="underline hover:text-navy-900">{ui.editorialPolicy}</a> · <a href={methodHref} class="underline hover:text-navy-900">{label('method')}</a></p>
+    </header>
+    {page.tool ? (
+      <>
+        <Clamp text={page.resume} lang={lang} id={`clamp-${page.id}`} class="mb-4" />
+        <div data-outil>
+          {page.tool === 'calc' && <StampDutyCalculator client:load {...tp} methodHref={methodHref} idPrefix={page.id.slice(0, 12)} />}
+          {page.tool === 'area' && <AreaTable client:load />}
+          {page.tool === 'joint' && <JointTool client:load />}
+          {page.tool === 'shared' && <SharedTool client:load />}
+          {page.tool === 'refund' && <RefundTool client:load nation={tp.nation} />}
+          {page.tool === 'transfer' && <TransferTool client:load />}
+        </div>
+      </>
+    ) : (
+      <>
+        <p class="mb-6 text-navy-800">{page.resume}</p>
+        {page.mini && <MiniSim client:load kind={page.mini} href={miniHref} />}
+      </>
+    )}
+    <div class="prose prose-slate max-w-none prose-headings:font-serif">
+      {parts.map((p, i) => i % 2 === 0 ? <Fragment set:html={p} /> : <MiniSim client:load kind={p} href={miniHref} />)}
+    </div>
+  </article>
+</PageLayout>

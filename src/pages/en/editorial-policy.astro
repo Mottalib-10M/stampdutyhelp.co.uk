@@ -1,0 +1,28 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { AUTHOR_NAME, CONTACT_EMAIL, LAST_UPDATED, REVIEW_CYCLE_MONTHS, SITE_NAMES } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+const lang = 'en';
+---
+<PageLayout title={`Editorial policy of ${SITE_NAMES[lang]}: sources and corrections`} description="Where the SDLT, LBTT and LTT rates on this site come from, who answers for them, how often they are re-read and what happens when a reader reports a figure that is wrong." lang={lang} noindex={true} breadcrumbs={[{ label: 'Editorial policy' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none prose-headings:font-serif">
+    <h1>Editorial and corrections policy</h1>
+    <p>A purchase tax bill is paid in one go, often from savings set aside for the deposit. A wrong figure on this site could make someone offer too much or budget too little, so this page says where our numbers come from and what we do when one is wrong.</p>
+    <h2>Who is responsible</h2><p>Content and calculations: {AUTHOR_NAME}, <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
+    <h2>Sources we use, and those we do not</h2>
+    <ul>
+      <li><strong>HMRC</strong> on GOV.UK: the SDLT rate pages, the higher rates guidance, the corporate bodies guidance and the Stamp Duty Land Tax Manual;</li>
+      <li><strong>Revenue Scotland</strong>: LBTT rates and bands, the Additional Dwelling Supplement guidance and the technical guidance (LBTT10070, LBTT3048);</li>
+      <li><strong>the Welsh Revenue Authority</strong> on gov.wales: LTT rates and bands, higher rates overview and technical guidance;</li>
+      <li><strong>legislation.gov.uk</strong> for the Acts themselves: Finance Act 2003, the LBTT (Scotland) Act 2013, the LTT and Anti-avoidance of Devolved Taxes (Wales) Act 2017;</li>
+      <li><strong>HM Land Registry</strong> for the UK House Price Index.</li>
+    </ul>
+    <p>We do not take rates from portals, lenders’ blogs or forums, even when they are right: a portal still describing the Welsh surcharge as one percentage point was one reason this site exists.</p>
+    <h2>Tests before every release</h2><p>The worked examples printed by the three authorities are replayed by automated tests at every build, together with the edges of every rule (the surcharge floor, the first-time buyer bands, the company rate threshold, the first band of each nation). A failing test blocks the release.</p>
+    <h2>Review cycle</h2><p>A full re-read at least every {REVIEW_CYCLE_MONTHS} months, after each UK Budget, each Scottish Budget and each Welsh Budget, and whenever one of the three authorities updates a rate page.</p>
+    <h2>Corrections</h2>
+    <ol><li>We check the report against the primary source.</li><li>We fix the parameter or the code and add a test for the case.</li><li>The page shows the new check date; a correction that changed a result is stated on the page concerned.</li></ol>
+    <h2>Independence</h2><p>No conveyancer, lender, agent or tax adviser pays to appear here. If that ever changed, it would be written next to the link.</p>
+    <p>See also the <a href={route('method', lang)}>method page</a>. Policy version: {LAST_UPDATED}.</p>
+  </div>
+</PageLayout>

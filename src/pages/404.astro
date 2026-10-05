@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import StampDutyCalculator from '../components/calc/StampDutyCalculator';
+import { route, DEFAULT_LOCALE } from '../i18n/routes';
+import { t } from '../i18n/ui';
+const ui = t(DEFAULT_LOCALE);
+---
+<BaseLayout title="Page not found: Stamp Duty UK" description="This address does not exist on Stamp Duty UK. The calculator for SDLT, LBTT and LTT is below, and the home page lists every situation and every nation." lang={DEFAULT_LOCALE} noindex={true}>
+  <div class="mx-auto max-w-6xl px-4 py-12">
+    <h1 class="font-serif text-3xl font-bold text-navy-900">Page not found</h1>
+    <p class="mt-4 text-navy-700">{ui.notFound}</p>
+    <StampDutyCalculator client:load idPrefix="nf" />
+    <p class="mt-6"><a href={route('home', DEFAULT_LOCALE)} class="rounded-lg bg-accent-600 px-5 py-2.5 font-semibold text-white hover:bg-accent-700">Go to the home page</a></p>
+  </div>
+</BaseLayout>

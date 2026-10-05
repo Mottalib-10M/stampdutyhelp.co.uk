@@ -1,0 +1,25 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import LegalIdentity from '../../components/LegalIdentity.astro';
+import { AUTHOR_NAME, CONTACT_EMAIL, LAST_UPDATED, REVIEW_CYCLE_MONTHS, SITE_NAMES } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+import { contactPageSchema } from '../../lib/seo';
+const lang = 'en';
+const description = 'Write to Stamp Duty UK: report a band or surcharge that looks wrong, ask how a figure was worked out, or ask to embed the SDLT, LBTT and LTT calculator on your site.';
+---
+<PageLayout title={`Contact ${SITE_NAMES[lang]}: corrections, questions, embedding`} description={description} lang={lang} noindex={true} jsonLd={[contactPageSchema({ name: 'Contact', description, path: route('contact', lang), lang })]} breadcrumbs={[{ label: 'Contact' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none prose-headings:font-serif">
+    <h1>Contact</h1>
+    <p>Every message is read: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
+    <h2>A figure looks wrong</h2>
+    <p>Send the share link of your calculation (it carries the nation, price and buyer situation you entered) and, if you have it, the figure on your solicitor’s completion statement or from the HMRC, Revenue Scotland or Welsh Revenue Authority calculator. We check it against the published bands and reply with what we found.</p>
+    <h2>Embedding the calculator</h2>
+    <p>Estate agents, conveyancers, housing associations and local newsrooms can embed the three-nation calculator free of charge. The code is on the <a href={route('widget', lang)}>embed page</a>.</p>
+    <h2>What we cannot do</h2>
+    <p>We cannot file a return, contact a tax authority for you or say whether a particular relief applies to your file. For that, speak to your solicitor or conveyancer, or to HMRC, Revenue Scotland or the Welsh Revenue Authority.</p>
+    <h2>Response time</h2><p>Usually within five working days, corrections first. All rates are re-read at least every {REVIEW_CYCLE_MONTHS} months and after every Budget.</p>
+    <h2>Publisher</h2>
+    <LegalIdentity lang={lang} />
+    <p>Content owner: {AUTHOR_NAME}. See the <a href={route('terms', lang)}>legal notice</a>. Updated: {LAST_UPDATED}.</p>
+  </div>
+</PageLayout>

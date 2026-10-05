@@ -1,0 +1,69 @@
+---
+/** Method and sources (trust page, RECETTE §8.2): formulas, sources, tests, limits. */
+import PageLayout from '../../layouts/PageLayout.astro';
+import { route } from '../../i18n/routes';
+import { P, SOURCES } from '../../lib/engine/params';
+import { gbp, pct, bands, breakdown } from '../../lib/helpers';
+import { compute } from '../../lib/engine/tax';
+import { displayDate } from '../../lib/format';
+import { breadcrumbSchema, webPageSchema } from '../../lib/seo';
+import { CONTACT_EMAIL, REVIEW_CYCLE_MONTHS } from '../../data/site-config';
+import { HPI, monthLabel } from '../../lib/hpi';
+const lang = 'en';
+const title = 'Stamp Duty UK method 2026: bands, surcharges, tests, limits';
+const description = 'How Stamp Duty UK works out SDLT, LBTT with ADS and LTT for 2026: the slice formula, each surcharge, the official examples replayed in tests, and its limits.';
+const h1 = 'How the calculator works';
+const path = route('method', lang);
+const s = P.sdlt, l = P.lbtt, w = P.ltt;
+const checks = [
+  ['HMRC, residential rates page', '£295,000, one home, England', 4750, compute({ nation: 'england', price: 295000, situation: 'home' }).total],
+  ['HMRC, residential rates page', '£500,000, first-time buyer', 10000, compute({ nation: 'england', price: 500000, situation: 'first' }).total],
+  ['HMRC, higher rates guidance', '£300,000, additional property', 20000, compute({ nation: 'england', price: 300000, situation: 'additional' }).total],
+  ['GOV.UK, non-residential rates', '£275,000 commercial freehold', 3250, compute({ nation: 'england', price: 275000, situation: 'home', kind: 'nonresidential' }).total],
+  ['Revenue Scotland, residential rates', '£235,000, Scotland', 1800, compute({ nation: 'scotland', price: 235000, situation: 'home' }).total],
+  ['Revenue Scotland, residential rates', '£875,000, Scotland', 63350, compute({ nation: 'scotland', price: 875000, situation: 'home' }).total],
+  ['Welsh Revenue Authority, rates and bands', '£280,000, main rates', 3300, compute({ nation: 'wales', price: 280000, situation: 'home' }).total],
+  ['Welsh Revenue Authority, rates and bands', '£260,000 second home', 15950, compute({ nation: 'wales', price: 260000, situation: 'additional' }).total],
+];
+---
+<PageLayout title={title} description={description} lang={lang} jsonLd={[webPageSchema({ name: h1, description, path, lang }), breadcrumbSchema([{ name: 'Home', path: route('home', lang) }, { name: h1, path }])]} breadcrumbs={[{ label: h1 }]}>
+  <header class="mb-6"><h1 class="font-serif text-3xl font-bold text-navy-900 md:text-4xl">{h1}</h1><p class="mt-3 text-lg text-navy-700">One engine, three tax codes, every rate read at its source on {displayDate(P.retrieved_at, 'en-GB')}.</p></header>
+  <div class="prose prose-slate max-w-none prose-headings:font-serif">
+    <p>All the legal values used on this site live in a single parameter file: bands, rates, the {gbp(s.higher_rates_min_price)} floor of the surcharges, the {s.non_resident_days}-day residence test, the {s.return_days}-day and {l.return_days}-day filing limits, the refund windows. Each block names the official page it was read from. Pages and calculators read that file, so a corrected value changes everywhere at once, and no rate is typed into an article.</p>
+    <h2>The slice formula</h2>
+    <p>All three taxes are “slice” taxes: each rate applies only to the part of the price that falls inside its band, and the slices are added. The total is rounded down to the pound, as the authorities’ worked examples do; band lines keep their pence on screen when a rate such as {pct(0.075)} produces them.</p>
+    <Fragment set:html={breakdown({ nation: 'england', price: 295000, situation: 'home' }, 'HMRC’s own example, rebuilt by the engine: £295,000 in England')} />
+    <h2>England and Northern Ireland: SDLT</h2>
+    <Fragment set:html={bands('sdlt')} />
+    <ul>
+      <li><strong>First-time buyers</strong>: {pct(0)} to {gbp(s.first_time_buyer[0][0] as number)} and {pct(s.first_time_buyer[1][1])} above, only if the price is {gbp(s.first_time_buyer_max_price)} or less and every buyer has never owned a home anywhere.</li>
+      <li><strong>Additional property</strong>: {pct(s.higher_rates_surcharge)} added to every band when a buyer will own two dwellings worth {gbp(s.higher_rates_min_price)} or more at the end of completion day, unless the main home is being replaced.</li>
+      <li><strong>Non-UK residents</strong>: {pct(s.non_resident_surcharge)} added to every residential band, including first-time buyer and higher rates, when any buyer spent fewer than {s.non_resident_days} days in the UK in the year before completion.</li>
+      <li><strong>Companies</strong>: {pct(s.corporate_flat_rate)} of the whole price above {gbp(s.corporate_flat_threshold)}, unless a relief applies (letting, development, trading); otherwise the higher rates.</li>
+    </ul>
+    <h2>Scotland: LBTT and ADS</h2>
+    <Fragment set:html={bands('lbtt')} />
+    <p>First-time buyer relief raises the nil band to {gbp(l.first_time_buyer_nil_band)}, worth at most {gbp(l.first_time_buyer_max_saving)}. The Additional Dwelling Supplement is a flat {pct(l.ads_rate)} of the whole price, added on top of LBTT, from {gbp(l.ads_min_price)}. Companies pay it on their first dwelling. Scotland has no non-resident surcharge.</p>
+    <h2>Wales: LTT</h2>
+    <Fragment set:html={bands('ltt')} />
+    <Fragment set:html={bands('lttHigher')} />
+    <p>Wales uses a separate higher band table rather than a flat surcharge, has no first-time buyer relief and no non-resident surcharge.</p>
+    <h2>Tests that block a release</h2>
+    <p>The worked examples published by the three authorities are replayed by automated tests at every build, with the edges of each rule. The table is computed by the engine as you read it.</p>
+    <div class="not-prose my-6 overflow-x-auto"><table class="w-full text-sm"><thead><tr><th scope="col" class="border-b border-navy-300 bg-navy-50 px-3 py-2 text-left">Published by</th><th scope="col" class="border-b border-navy-300 bg-navy-50 px-3 py-2 text-left">Case</th><th scope="col" class="border-b border-navy-300 bg-navy-50 px-3 py-2 text-right">Official</th><th scope="col" class="border-b border-navy-300 bg-navy-50 px-3 py-2 text-right">This site</th></tr></thead><tbody>
+      {checks.map(([who, c, o, me]) => <tr><td class="border-b border-navy-100 px-3 py-2">{who}</td><td class="border-b border-navy-100 px-3 py-2">{c}</td><td class="tabular-nums border-b border-navy-100 px-3 py-2 text-right">{gbp(o as number)}</td><td class="tabular-nums border-b border-navy-100 px-3 py-2 text-right">{gbp(me as number)}</td></tr>)}
+    </tbody></table></div>
+    <h2>The house price data</h2>
+    <p>City and area pages use the UK House Price Index for {monthLabel()}, read from HM Land Registry’s public data service on {displayDate(HPI.retrieved_at, 'en-GB')}: the average price of all sales, of sales to first-time buyers and to former owner-occupiers, and by property type. The most recent months of the index are revised as late sales are registered, so an average can move by a few hundred pounds between two releases. Northern Ireland publishes only the all-sales average by district.</p>
+    <h2>What the calculator does not do</h2>
+    <ul>
+      <li>Rent on a new lease (SDLT on the net present value above {gbp(s.lease_npv_residential_threshold)}), except in the shared ownership tool where it is explained.</li>
+      <li>Linked transactions, multiple dwellings relief in Scotland and Wales, purchases of six or more dwellings, and reliefs for charities, groups or developers.</li>
+      <li>Transitional rules for contracts exchanged before a rate change: the calculator applies the rates in force for completions from 1 April 2025.</li>
+      <li>The residence test itself: you say whether a buyer is non-resident; the 183-day count is explained on the non-resident page.</li>
+    </ul>
+    <h2>Sources</h2>
+    <ul>{Object.values(SOURCES).map((x) => <li><a href={x.url} target="_blank" rel="nofollow noopener noreferrer">{x.label}</a></li>)}</ul>
+    <p>Everything is reviewed at least every {REVIEW_CYCLE_MONTHS} months and after each UK, Scottish and Welsh Budget. Spotted a difference? <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
+  </div>
+</PageLayout>

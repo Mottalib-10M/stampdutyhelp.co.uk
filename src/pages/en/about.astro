@@ -1,0 +1,28 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { LAST_UPDATED, AUTHOR_NAME, CONTACT_EMAIL, AUTHOR_ROLE } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+import { personSchema, organizationSchema, breadcrumbSchema, profilePageSchema } from '../../lib/seo';
+import { displayDate } from '../../lib/format';
+import { HPI, monthLabel } from '../../lib/hpi';
+const lang = 'en';
+const n = Object.values(HPI.regions).filter((r) => r.level === 'la').length;
+---
+<PageLayout title="Stamp Duty UK: who builds this calculator, and why it exists" description="Who publishes Stamp Duty UK, why one calculator for SDLT, LBTT and LTT, where each rate comes from, how the site is funded, and how to report a wrong figure." lang={lang} jsonLd={[personSchema(lang), organizationSchema(lang), profilePageSchema({ path: route('about', lang), lang }), breadcrumbSchema([{ name: 'Home', path: route('home', lang) }, { name: 'About', path: route('about', lang) }])]} breadcrumbs={[{ label: 'About' }]}>
+  <header class="mb-6"><h1 class="font-serif text-3xl font-bold text-navy-900 md:text-4xl">About Stamp Duty UK</h1></header>
+  <div class="prose prose-slate max-w-none prose-headings:font-serif">
+    <div class="not-prose mb-6"><p class="text-lg font-semibold text-navy-900">{AUTHOR_NAME}</p><p class="text-navy-700">{AUTHOR_ROLE[lang]}</p></div>
+    <p>Radif Partners publishes free calculators built on official rules. Stamp Duty UK answers one question that every home buyer in Britain asks before an offer: how much tax will the purchase cost on completion day? The answer depends on which side of a border the house stands, because the United Kingdom has had three different purchase taxes since Scotland left Stamp Duty Land Tax in April 2015 and Wales followed in April 2018.</p>
+    <h2>Why this site does better than the first Google result</h2>
+    <p>The official calculators are exact but each covers one nation, and the big property portals simplify: most of them leave out the 17% company rate, shared ownership, buyers who purchase together, or the refund of the surcharge when the old home finally sells. This site puts the three regimes (SDLT in England and Northern Ireland, LBTT with the Additional Dwelling Supplement in Scotland, LTT with its higher rates in Wales) behind one form, shows every band, prices the surcharges separately and tells you what you can claim back and by which date. It also works out the tax on the average home of {n} local authorities from the UK House Price Index of {monthLabel()}.</p>
+    <h2>How the figures are produced</h2>
+    <p>Every band, rate, threshold and deadline sits in one dated parameter file, read on the pages of HMRC, Revenue Scotland and the Welsh Revenue Authority. The engine is tested against the worked examples those three authorities publish: a £295,000 home in England, an £875,000 house in Scotland, a £260,000 second home in Wales and the other examples they print. The details, and what the calculator does not model, are on the <a href={route('method', lang)}>method page</a>.</p>
+    <h2>What we are not</h2>
+    <p>Radif Partners is not a law firm, a conveyancer, a mortgage broker or an estate agent, and has no link with HMRC, Revenue Scotland or the Welsh Revenue Authority. We sell no contact details and take no referral fee. Your conveyancer files the return; the tax authority decides.</p>
+    <h2>Funding</h2>
+    <p>The site is free and asks for no account. If advertising is ever added, it will never sit above a calculator, and nothing you type will be used for it: the calculation runs in your browser.</p>
+    <h2>Telling us about a mistake</h2>
+    <p>If a figure differs from your solicitor’s completion statement or from an official calculator, write to <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> with the share link of your calculation. Confirmed errors are corrected and turned into a test. See also the <a href={route('editorial', lang)}>editorial policy</a> and the <a href={route('terms', lang)}>legal notice</a>.</p>
+    <p class="text-sm text-navy-600">Rates and bands checked on <time datetime={LAST_UPDATED}>{displayDate(LAST_UPDATED, 'en-GB')}</time>.</p>
+  </div>
+</PageLayout>

@@ -1,0 +1,13 @@
+# Stamp Duty UK
+
+> Independent calculator for the three property purchase taxes of the United Kingdom, published by Radif Partners: Stamp Duty Land Tax (England and Northern Ireland, HMRC), Land and Buildings Transaction Tax with the Additional Dwelling Supplement (Scotland, Revenue Scotland) and Land Transaction Tax with its higher rates (Wales, Welsh Revenue Authority). Rates for completions in 2026, read on the official pages and tested against the authorities' worked examples.
+
+## Main pages
+- [Stamp duty calculator for the whole UK](/en/): one form for the three nations, every surcharge, band by band.
+- [SDLT calculator](/en/sdlt-calculator/), [LBTT calculator](/en/lbtt-calculator/), [Land Transaction Tax calculator](/en/land-transaction-tax-calculator/)
+- [Tax on the average home by local authority](/en/stamp-duty-by-area/): UK House Price Index, July 2026.
+- [How the calculator works](/en/method/): formulas, official worked examples replayed in tests, limits.
+
+## Data
+- Parameters: bands, surcharges and deadlines from HMRC, Revenue Scotland and the Welsh Revenue Authority, checked on 5 October 2026.
+- House prices: UK House Price Index (HM Land Registry), July 2026.
