@@ -1,6 +1,6 @@
 /** Configuration centrale du site (générée par new-site.py). */
-export const SITE_URL = "https://uk-stamp-duty.example";
-export const SITE_NAMES: Record<string, string> = {"en": "Stamp Duty UK"};
+export const SITE_URL = "https://stampdutyhelp.co.uk";
+export const SITE_NAMES: Record<string, string> = {"en": "Stamp Duty Help"};
 export const LANG_TAGS: Record<string, string> = {"en": "en-GB"};
 export const OG_LOCALES: Record<string, string> = {"en": "en_GB"};
 export const LOCALE_TAG = 'en-GB';
@@ -16,7 +16,7 @@ export const AUTHOR_DESC: Record<string, string> = {"en": "Radif Partners builds
  *  themes reellement traites par le site, pas une liste de mots-cles : un sujet
  *  declare ici sans page qui le couvre est une declaration fausse. */
 export const KNOWS_ABOUT: Record<string, string[]> = {"en": ["Stamp Duty Land Tax", "Land and Buildings Transaction Tax", "Additional Dwelling Supplement", "Land Transaction Tax", "First-time buyer relief", "UK House Price Index"]};
-export const CONTACT_EMAIL = "contact@uk-stamp-duty.example";
+export const CONTACT_EMAIL = "contact@stampdutyhelp.co.uk";
 export const THEME_COLOR = '#012169';
 export const LOGO_SYMBOL = 'maison';
 export const BING_VERIFY_CODE = '';

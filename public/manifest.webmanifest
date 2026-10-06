@@ -1,6 +1,6 @@
 {
- "name": "Stamp Duty UK",
- "short_name": "Stamp Duty UK",
+ "name": "Stamp Duty Help",
+ "short_name": "Stamp Duty Help",
  "description": "Stamp duty for England and Northern Ireland, LBTT for Scotland and LTT for Wales, with every surcharge, in one calculator.",
  "start_url": "/en/",
  "display": "standalone",

@@ -1,4 +1,4 @@
-# Stamp Duty UK
+# Stamp Duty Help
 
 > Independent calculator for the three property purchase taxes of the United Kingdom, published by Radif Partners: Stamp Duty Land Tax (England and Northern Ireland, HMRC), Land and Buildings Transaction Tax with the Additional Dwelling Supplement (Scotland, Revenue Scotland) and Land Transaction Tax with its higher rates (Wales, Welsh Revenue Authority). Rates for completions in 2026, read on the official pages and tested against the authorities' worked examples.
 

@@ -5,7 +5,7 @@ import { AUTHOR_NAME, CONTACT_EMAIL, LAST_UPDATED, REVIEW_CYCLE_MONTHS, SITE_NAM
 import { route } from '../../i18n/routes';
 import { contactPageSchema } from '../../lib/seo';
 const lang = 'en';
-const description = 'Write to Stamp Duty UK: report a band or surcharge that looks wrong, ask how a figure was worked out, or ask to embed the SDLT, LBTT and LTT calculator on your site.';
+const description = 'Write to Stamp Duty Help: report a band or surcharge that looks wrong, ask how a figure was worked out, or ask to embed the SDLT, LBTT and LTT calculator on your site.';
 ---
 <PageLayout title={`Contact ${SITE_NAMES[lang]}: corrections, questions, embedding`} description={description} lang={lang} noindex={true} jsonLd={[contactPageSchema({ name: 'Contact', description, path: route('contact', lang), lang })]} breadcrumbs={[{ label: 'Contact' }]} showAuthor={false}>
   <div class="prose prose-slate max-w-none prose-headings:font-serif">
