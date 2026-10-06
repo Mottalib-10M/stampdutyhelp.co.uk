@@ -4,11 +4,14 @@ import { CONTACT_EMAIL, LAST_UPDATED, SITE_NAMES } from '../../data/site-config'
 import { route } from '../../i18n/routes';
 const lang = 'en';
 ---
-<PageLayout title={`Cookies on ${SITE_NAMES[lang]}: none set by the calculator`} description="This stamp duty calculator sets no cookie: it runs in your browser and loads no analytics or advertising. What would change, and how you would be asked, if that ever changed." lang={lang} noindex={true} breadcrumbs={[{ label: 'Cookies' }]} showAuthor={false}>
+<PageLayout title={`Cookies on ${SITE_NAMES[lang]}: analytics only if you accept`} description="This stamp duty calculator sets no cookie unless you accept analytics. With your consent, Microsoft Clarity measures page use; its cookies, lifetimes and how to withdraw." lang={lang} noindex={true} breadcrumbs={[{ label: 'Cookies' }]} showAuthor={false}>
   <div class="prose prose-slate max-w-none prose-headings:font-serif">
     <h1>Cookies</h1>
-    <p>The calculators work without cookies. No analytics, advertising or social network script is loaded today, so your browser receives nothing from us to store.</p>
-    <h2>If that changes</h2><p>Should audience measurement or advertising be added, a banner will tell you before anything loads and will let you refuse or change your mind later; this page will then list each cookie, its purpose and its lifetime, as the Privacy and Electronic Communications Regulations require in the UK.</p>
+    <p>The SDLT, LBTT and LTT calculators work without cookies. Nothing is stored on your device for measurement until you say yes in the banner, as the Privacy and Electronic Communications Regulations (PECR) require in the UK.</p>
+    <h2>Strictly necessary</h2><p>The answer you give in the banner is kept in your browser’s <code>localStorage</code> as <code>consent-choice</code>, so the banner does not come back on every page. It identifies nobody and is never sent to us.</p>
+    <h2>Analytics, with consent only: Microsoft Clarity</h2><p>If you accept, the site loads Microsoft Clarity, run by Microsoft Ireland Operations Limited. It produces anonymous session recordings and heatmaps: which pages are read, where people click, how far they scroll. The property price, buyer type and other figures you enter are masked in the browser before anything is sent. Cookies: <code>_clck</code> (one year) and <code>_clsk</code> (one day); Microsoft may add <code>MUID</code> and <code>CLID</code> on its own domains. A visit that starts from a shared link with figures in its address records that address.</p>
+    <h2>Advertising</h2><p>No adverts, no advertising cookies, no social network buttons.</p>
+    <h2>Changing your choice</h2><p>Use “Cookie settings” in the footer to reopen the banner and decline; Clarity then stops loading. To remove cookies already set, clear this site’s data in your browser.</p>
     <p>More in the <a href={route('privacy', lang)}>privacy policy</a>. Questions: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. Updated: {LAST_UPDATED}.</p>
   </div>
 </PageLayout>
