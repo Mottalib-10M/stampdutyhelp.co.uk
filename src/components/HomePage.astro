@@ -18,7 +18,7 @@ const lang = 'en';
 const x = HOME;
 const path = route('home', lang);
 const h = helpers();
-const keys: SourceKey[] = ['govSdltRates', 'govSdltHigher', 'govSdltCorporate', 'sdltmNonResident', 'rsResidential', 'rsAds', 'rsFtb', 'wraRates', 'wraHigher', 'wraGuide', 'ukhpi'];
+const keys: SourceKey[] = ['govSdltRates', 'govSdltHigher', 'govSdltCorporate', 'sdltmNonResident', 'rsResidential', 'rsAds', 'rsFtb', 'wraRates', 'wraHigher', 'wraGuide', 'ukhpi', 'govCgt', 'govDividends', 'govS24', 'govIht'];
 const sources = keys.map((k) => ({ name: SOURCES[k].label, url: SOURCES[k].url }));
 const jsonLd = [websiteSchema(lang), organizationSchema(lang), webPageSchema({ name: x.h1, description: x.description, path, lang }), webApplicationSchema({ name: x.h1, description: x.description, path, lang }), faqSchema(x.faqs, lang)];
 ---

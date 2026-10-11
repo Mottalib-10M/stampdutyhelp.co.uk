@@ -7,7 +7,7 @@ import type { Params, SourceKey } from './engine/params';
 import type { Nation, Situation, Result, Input } from './engine/tax';
 import type { Region } from './hpi';
 
-export type Group = 'calculators' | 'england' | 'scotland' | 'wales' | 'situations' | 'prices' | 'places';
+export type Group = 'calculators' | 'england' | 'scotland' | 'wales' | 'situations' | 'prices' | 'places' | 'gains' | 'inheritance';
 export interface FAQ { q: string; a: string }
 
 export interface Helpers {
@@ -35,8 +35,8 @@ export interface Helpers {
   P: Params;
 }
 
-export type ToolKind = 'calc' | 'area' | 'joint' | 'shared' | 'refund' | 'transfer';
-export interface ToolProps { nation?: Nation; lockNation?: boolean; situation?: Situation; price?: number; company?: boolean; nonResident?: boolean; kind?: 'residential' | 'nonresidential' }
+export type ToolKind = 'calc' | 'area' | 'joint' | 'shared' | 'refund' | 'transfer' | 'cgt' | 'iht' | 'dividend' | 'rental';
+export interface ToolProps { cgtMode?: 'property' | 'any'; nation?: Nation; lockNation?: boolean; situation?: Situation; price?: number; company?: boolean; nonResident?: boolean; kind?: 'residential' | 'nonresidential' }
 
 export interface PageDef {
   /** Equal to the file name. */

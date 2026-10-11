@@ -121,6 +121,17 @@ Tous sont dans `src/data/params-2026.json` (valeurs) et ses `sources` (URL). Rap
 
 **Ce qu'on ne publie pas** (non vérifié) : règles de propriété partagée en Écosse et au pays de Galles, allègement pour logements multiples écossais et gallois chiffré, pénalités écossaises et galloises chiffrées, toute statistique de marché hors UK HPI.
 
+## Module « après l'achat » (ajouté le 2026-10-11)
+
+Impôts des particuliers liés au patrimoine, année fiscale 2026-27 : Capital Gains Tax, Inheritance Tax, dividendes, revenus locatifs. 18 pages dans deux groupes : `gains` (CGT, dividendes, loyers) et `inheritance` (IHT). Dans l'en-tête, les deux groupes partagent un seul menu « Other taxes » (`src/i18n/nav.ts`, `MERGED`) ; le pied de page garde une colonne par groupe.
+
+- **Paramètres** : `params-2026.json > wealth` (`income_tax`, `cgt`, `prr`, `dividends`, `rental`, `iht`), lus sur GOV.UK le 2026-10-11 ; sources `govCgt`, `govCgtRates`, `cg10245`, `govTaxSellHome`, `hs283`, `govCgtReport`, `govDividends`, `govRatesChange2025`, `govRentingTax`, `govS24`, `govMtd`, `govPropertyAllowance`, `govRentARoom`, `govIht`, `govIhtThresholds`, `govRnrb`, `govIhtPay`, `govIhtPensions`, `govApr`, `govBpr`, `govIncomeTaxRates`, `govScottishIncomeTax`, `govWelshIncomeTax`. Les bandes d'impôt sur le revenu sont en revenu **imposable** (après Personal Allowance).
+- **Moteur** : `src/lib/engine/wealth.ts` (`cgt`, `prrShare`, `propertyGain`, `cgtDeadline`, `dividendTax`, `incomeTax`, `rentalTax`, `mtdStart`, `iht`, `giftTax`). Tests : `wealth.test.ts` rejoue les exemples GOV.UK/HMRC (CGT 1 728 £ et 10 842 £ ; PRR 54 000 £ ; dividendes 268,75 £ ; Section 24 Sophia, John, Brian sur les barèmes 2016-17 de HMRC via `S24_TEST_PARAMS` ; IHT 70 000 £, exemples RNRB, taper, Sally).
+- **Outils** (`tool`) : `cgt` (`toolProps.cgtMode: 'any' | 'property'`), `iht`, `dividend`, `rental` (`src/components/calc/*Tool.tsx`). Minis : `cgtRates`, `cgtAllowance`, `prrShare`, `cgt60`, `dividendRates`, `s24Cost`, `mtdStart`, `rentARoom`, `ihtSimple`, `ihtThreshold`, `rnrbTaper`, `giftTaper`, `ihtPension` (`src/lib/minis/_wkit.ts`).
+- **Hypothèses publiées** : PRR suppose « habité d'abord, loué ensuite » ; l'IHT ne modélise ni BPR/APR ni le taux de 36 % ; pas de revenus d'épargne. Pas de chiffre écossais sur la CGT au-delà de la tranche UK.
+- **À surveiller** : Budget (taux CGT, dividendes, taux fonciers de 2027, seuils MTD), table HMRC des seuils IHT (NRB figé au 5 avril 2031, RNRB affiché au 5 avril 2030), budget écossais (bandes).
+- `pct()` affiche désormais deux décimales quand le taux en a (10,75 %).
+
 ## Étapes
 
 1. Vérifier que le sujet n'existe pas : `ls src/content/pages`.

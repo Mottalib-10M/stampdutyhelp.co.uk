@@ -47,10 +47,10 @@ ANCIEN_CLARITY = re.compile(r'__clarityLoad|consent-choice')
 
 # Pages légales, reconnues à leur adresse (toutes langues du portefeuille).
 P_PRIVACY = re.compile(r'(privacy|privacidad|privacidade|confidentialit|datenschutz|privacybeleid|riservatezza'
-                       r'|prywatnos|integritet|personvern|tietosuoja|aporrito|aporrhto|gdpr)', re.I)
+                       r'|prywatnos|integritet|personvern|tietosuoja|aporrito|aporrhto|gdpr|privatliv)', re.I)
 P_COOKIES = re.compile(r'(cookie|evaste|kakor|informasjonskapsl|ciasteczk)', re.I)
 P_LEGAL = re.compile(r'(mentions-legales|legal|impressum|aviso-legal|note-legali|terms|cgu|conditions'
-                     r'|voorwaarden|colofon|vilkar|villkor|kayttoehdot|agb|termini|termos|regulamin'
+                     r'|voorwaarden|colofon|vilkar|vilkaar|villkor|kayttoehdot|agb|termini|termos|regulamin'
                      r'|nota-prawna|condiciones|disclaimer|oroi|nomik|colophon|imprint)', re.I)
 
 NEGATION = re.compile(

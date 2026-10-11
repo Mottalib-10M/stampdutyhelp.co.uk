@@ -446,6 +446,427 @@
     "govSdltPenalties": {
       "url": "https://www.gov.uk/guidance/penalties-and-interest-on-a-late-stamp-duty-land-tax-return",
       "label": "HMRC, Penalties and interest on a late Stamp Duty Land Tax return (updated 26 June 2026)"
+    },
+    "govIncomeTaxRates": {
+      "url": "https://www.gov.uk/income-tax-rates",
+      "label": "GOV.UK, Income Tax rates and Personal Allowances (2026 to 2027)"
+    },
+    "govScottishIncomeTax": {
+      "url": "https://www.gov.uk/scottish-income-tax",
+      "label": "GOV.UK, Income Tax in Scotland: 2026 to 2027 rates"
+    },
+    "govWelshIncomeTax": {
+      "url": "https://www.gov.uk/welsh-income-tax",
+      "label": "GOV.UK, Income Tax in Wales: 2026 to 2027 rates"
+    },
+    "govCgt": {
+      "url": "https://www.gov.uk/capital-gains-tax",
+      "label": "GOV.UK, Capital Gains Tax: what you pay it on, rates and allowances (2026 to 2027 examples)"
+    },
+    "govCgtRates": {
+      "url": "https://www.gov.uk/guidance/capital-gains-tax-rates-and-allowances",
+      "label": "HMRC, Capital Gains Tax rates and allowances (updated 13 April 2026)"
+    },
+    "cg10245": {
+      "url": "https://www.gov.uk/hmrc-internal-manuals/capital-gains-manual/cg10245",
+      "label": "HMRC Capital Gains Manual, CG10245: rates of tax from 30 October 2024"
+    },
+    "govTaxSellProperty": {
+      "url": "https://www.gov.uk/tax-sell-property",
+      "label": "GOV.UK, Tax when you sell property (buy-to-let, second homes, inherited property)"
+    },
+    "govTaxSellHome": {
+      "url": "https://www.gov.uk/tax-sell-home",
+      "label": "GOV.UK, Tax when you sell your home: Private Residence Relief"
+    },
+    "hs283": {
+      "url": "https://www.gov.uk/government/publications/private-residence-relief-hs283-self-assessment-helpsheet",
+      "label": "HMRC, Private Residence Relief (Self Assessment helpsheet HS283)"
+    },
+    "govCgtReport": {
+      "url": "https://www.gov.uk/report-and-pay-your-capital-gains-tax",
+      "label": "GOV.UK, Report and pay your Capital Gains Tax (60-day UK property return)"
+    },
+    "govCgtNonRes": {
+      "url": "https://www.gov.uk/guidance/capital-gains-tax-for-non-residents-uk-residential-property",
+      "label": "HMRC, Tell HMRC about Capital Gains Tax on UK property or land if you are not a UK resident"
+    },
+    "govDividends": {
+      "url": "https://www.gov.uk/tax-on-dividends",
+      "label": "GOV.UK, Tax on dividends: rates from 6 April 2026 and worked example"
+    },
+    "govRatesChange2025": {
+      "url": "https://www.gov.uk/government/publications/income-tax-changes-to-tax-rates-for-property-savings-and-dividend-income/income-tax-changes-to-tax-rates-for-property-savings-and-dividend-income",
+      "label": "HMRC policy paper, Changes to tax rates for property, savings and dividend income (Budget 2025)"
+    },
+    "govRentingTax": {
+      "url": "https://www.gov.uk/renting-out-a-property/paying-tax",
+      "label": "GOV.UK, Renting out a property: paying tax"
+    },
+    "govS24": {
+      "url": "https://www.gov.uk/guidance/changes-to-tax-relief-for-residential-landlords-how-its-worked-out-including-case-studies",
+      "label": "HMRC, Tax relief for residential landlords: how it is worked out (case studies)"
+    },
+    "govMtd": {
+      "url": "https://www.gov.uk/guidance/find-out-if-and-when-you-need-to-use-making-tax-digital-for-income-tax",
+      "label": "HMRC, Find out if and when you need to use Making Tax Digital for Income Tax (updated 26 March 2026)"
+    },
+    "govPropertyAllowance": {
+      "url": "https://www.gov.uk/guidance/tax-free-allowances-on-property-and-trading-income",
+      "label": "HMRC, Tax-free allowances on property and trading income"
+    },
+    "govRentARoom": {
+      "url": "https://www.gov.uk/rent-room-in-your-home",
+      "label": "GOV.UK, Rent a room in your home: the Rent a Room Scheme"
+    },
+    "govIht": {
+      "url": "https://www.gov.uk/inheritance-tax",
+      "label": "GOV.UK, How Inheritance Tax works: thresholds, rules and allowances"
+    },
+    "govIhtThresholds": {
+      "url": "https://www.gov.uk/government/publications/rates-and-allowances-inheritance-tax-thresholds-and-interest-rates/inheritance-tax-thresholds-and-interest-rates",
+      "label": "HMRC, Inheritance Tax thresholds and interest rates (updated 6 April 2026)"
+    },
+    "govRnrb": {
+      "url": "https://www.gov.uk/guidance/inheritance-tax-residence-nil-rate-band",
+      "label": "HMRC, Work out and apply the residence nil rate band for Inheritance Tax"
+    },
+    "govIhtPay": {
+      "url": "https://www.gov.uk/paying-inheritance-tax",
+      "label": "GOV.UK, Pay your Inheritance Tax bill (deadline and instalments)"
+    },
+    "govIhtPensions": {
+      "url": "https://www.gov.uk/government/publications/inheritance-tax-unused-pension-funds-and-death-benefits/inheritance-tax-unused-pension-funds-and-death-benefits",
+      "label": "HMRC policy paper, Inheritance Tax on unused pension funds and death benefits from 6 April 2027"
+    },
+    "govApr": {
+      "url": "https://www.gov.uk/guidance/agricultural-relief-on-inheritance-tax",
+      "label": "HMRC, Agricultural Relief for Inheritance Tax (£2.5 million allowance from 6 April 2026)"
+    },
+    "govBpr": {
+      "url": "https://www.gov.uk/business-relief-inheritance-tax",
+      "label": "GOV.UK, Business Relief for Inheritance Tax"
+    }
+  },
+  "wealth": {
+    "_lisezmoi": "Taxes on owning, letting, selling and passing on property and investments, 2026 to 2027 tax year (6 April 2026 to 5 April 2027). Every value read on GOV.UK on retrieved_at. Income bands are in TAXABLE income (after the Personal Allowance), as HMRC defines them.",
+    "retrieved_at": "2026-10-11",
+    "tax_year": "2026 to 2027",
+    "tax_year_start": "2026-04-06",
+    "income_tax": {
+      "_source": [
+        "govIncomeTaxRates",
+        "govScottishIncomeTax",
+        "govWelshIncomeTax"
+      ],
+      "personal_allowance": 12570,
+      "pa_taper_threshold": 100000,
+      "pa_taper_ratio": 0.5,
+      "ruk": [
+        [
+          37700,
+          0.2
+        ],
+        [
+          125140,
+          0.4
+        ],
+        [
+          null,
+          0.45
+        ]
+      ],
+      "ruk_names": [
+        "basic",
+        "higher",
+        "additional"
+      ],
+      "scotland": [
+        [
+          3967,
+          0.19
+        ],
+        [
+          16956,
+          0.2
+        ],
+        [
+          31092,
+          0.21
+        ],
+        [
+          62430,
+          0.42
+        ],
+        [
+          125140,
+          0.45
+        ],
+        [
+          null,
+          0.48
+        ]
+      ],
+      "scotland_names": [
+        "starter",
+        "basic",
+        "intermediate",
+        "higher",
+        "advanced",
+        "top"
+      ],
+      "scotland_gross_note": "Scottish bands with the standard Personal Allowance: starter £12,571 to £16,537, basic to £29,526, intermediate to £43,662, higher to £75,000, advanced to £125,140, top above",
+      "property_allowance": 1000,
+      "rent_a_room": 7500,
+      "rent_a_room_shared": 3750,
+      "sa_property_income_after_expenses": 2500,
+      "sa_property_income_before_expenses": 10000
+    },
+    "cgt": {
+      "_source": [
+        "govCgt",
+        "govCgtRates",
+        "cg10245"
+      ],
+      "annual_exempt_amount": 3000,
+      "annual_exempt_amount_trusts": 1500,
+      "aea_history": [
+        [
+          "2022 to 2023",
+          12300
+        ],
+        [
+          "2023 to 2024",
+          6000
+        ],
+        [
+          "2024 to 2025",
+          3000
+        ],
+        [
+          "2025 to 2026",
+          3000
+        ],
+        [
+          "2026 to 2027",
+          3000
+        ]
+      ],
+      "basic_rate_band": 37700,
+      "rate_lower": 0.18,
+      "rate_higher": 0.24,
+      "rate_trustees": 0.24,
+      "badr_rate": 0.18,
+      "badr_rate_2025_26": 0.14,
+      "badr_rate_before_6_april_2025": 0.1,
+      "rates_from": "2024-10-30",
+      "previous_rates_other_assets": [
+        0.1,
+        0.2
+      ],
+      "previous_rates_residential": [
+        0.18,
+        0.24
+      ],
+      "previous_rates_residential_before_6_april_2024": [
+        0.18,
+        0.28
+      ],
+      "report_days_residential": 60,
+      "report_days_before_27_october_2021": 30,
+      "sa_proceeds_threshold": 50000,
+      "loss_claim_years": 4,
+      "chattels_threshold": 6000,
+      "non_resident_gains_since": "2015-04-05",
+      "uk_property_rich_share": 0.75,
+      "real_time_report_deadline": "31 December after the tax year"
+    },
+    "prr": {
+      "_source": [
+        "govTaxSellHome",
+        "hs283"
+      ],
+      "final_period_months": 9,
+      "final_period_months_disabled_or_care": 36,
+      "first_years_build_or_sell": 2,
+      "absence_any_reason_years": 3,
+      "absence_uk_work_years": 4,
+      "grounds_square_metres": 5000,
+      "letting_relief_max": 40000,
+      "nomination_years": 2,
+      "overseas_nomination_days": 90
+    },
+    "dividends": {
+      "_source": [
+        "govDividends",
+        "govRatesChange2025"
+      ],
+      "allowance": 500,
+      "ordinary_rate": 0.1075,
+      "upper_rate": 0.3575,
+      "additional_rate": 0.3935,
+      "rates_from": "2026-04-06",
+      "previous_rates": [
+        0.0875,
+        0.3375,
+        0.3935
+      ],
+      "self_assessment_above": 10000
+    },
+    "rental": {
+      "_source": [
+        "govRentingTax",
+        "govS24",
+        "govMtd",
+        "govRatesChange2025",
+        "govPropertyAllowance",
+        "govRentARoom"
+      ],
+      "finance_cost_credit_rate": 0.2,
+      "s24_full_from": "2020-04-06",
+      "s24_phase": [
+        [
+          "2017 to 2018",
+          0.75
+        ],
+        [
+          "2018 to 2019",
+          0.5
+        ],
+        [
+          "2019 to 2020",
+          0.25
+        ],
+        [
+          "2020 to 2021",
+          0
+        ]
+      ],
+      "mtd": [
+        [
+          "2026-04-06",
+          50000,
+          "2024 to 2025"
+        ],
+        [
+          "2027-04-06",
+          30000,
+          "2025 to 2026"
+        ],
+        [
+          "2028-04-06",
+          20000,
+          "2026 to 2027"
+        ]
+      ],
+      "property_rates_2027": [
+        0.22,
+        0.42,
+        0.47
+      ],
+      "savings_rates_2027": [
+        0.22,
+        0.42,
+        0.47
+      ],
+      "property_rates_from": "2027-04-06",
+      "fhl_abolished_income_tax": "2025-04-06",
+      "test_2016_17": {
+        "_note": "Rates used by HMRC in its finance-cost case studies",
+        "personal_allowance": 11000,
+        "bands": [
+          [
+            32000,
+            0.2
+          ],
+          [
+            139000,
+            0.4
+          ],
+          [
+            null,
+            0.45
+          ]
+        ]
+      }
+    },
+    "iht": {
+      "_source": [
+        "govIht",
+        "govIhtThresholds",
+        "govRnrb",
+        "govIhtPay",
+        "govIhtPensions",
+        "govApr",
+        "govBpr"
+      ],
+      "nil_rate_band": 325000,
+      "nil_rate_band_fixed_to": "2031-04-05",
+      "residence_nil_rate_band": 175000,
+      "rnrb_fixed_to": "2030-04-05",
+      "rnrb_since": "2020-04-06",
+      "rnrb_history": [
+        [
+          "2017 to 2018",
+          100000
+        ],
+        [
+          "2018 to 2019",
+          125000
+        ],
+        [
+          "2019 to 2020",
+          150000
+        ],
+        [
+          "2020 onwards",
+          175000
+        ]
+      ],
+      "taper_threshold": 2000000,
+      "taper_ratio": 0.5,
+      "rate": 0.4,
+      "charity_rate": 0.36,
+      "charity_share": 0.1,
+      "gift_years": 7,
+      "gift_taper": [
+        [
+          3,
+          0.4
+        ],
+        [
+          4,
+          0.32
+        ],
+        [
+          5,
+          0.24
+        ],
+        [
+          6,
+          0.16
+        ],
+        [
+          7,
+          0.08
+        ]
+      ],
+      "annual_exemption": 3000,
+      "small_gift": 250,
+      "wedding_child": 5000,
+      "wedding_grandchild": 2500,
+      "wedding_other": 1000,
+      "pay_months": 6,
+      "pensions_from": "2027-04-06",
+      "apr_bpr_allowance": 2500000,
+      "apr_bpr_from": "2026-04-06",
+      "apr_bpr_excess_relief": 0.5,
+      "non_uk_long_term_years": [
+        10,
+        20
+      ],
+      "unlisted_shares_years": 2,
+      "instalment_years": 10
     }
   }
 }

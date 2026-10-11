@@ -8,7 +8,7 @@ export const CURRENCY = 'GBP';
 export const YEAR = 2026;
 /** Année de création du site — signal d'ancienneté (RECETTE §8.0). */
 export const SITE_FOUNDED = '2026';
-export const LAST_UPDATED = '2026-10-05';
+export const LAST_UPDATED = '2026-10-11';
 export const AUTHOR_NAME = 'Radif Partners';
 export const AUTHOR_ROLE: Record<string, string> = {"en": "Publisher of UK property purchase tax calculators · SDLT, LBTT, LTT"};
 export const AUTHOR_DESC: Record<string, string> = {"en": "Radif Partners builds this independent calculator for the three purchase taxes of the United Kingdom. Every band, surcharge and deadline is read from HMRC, Revenue Scotland and the Welsh Revenue Authority, tested against their own worked examples and dated on the page."};

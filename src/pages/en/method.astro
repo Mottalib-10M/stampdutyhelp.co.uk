@@ -5,6 +5,7 @@ import { route } from '../../i18n/routes';
 import { P, SOURCES } from '../../lib/engine/params';
 import { gbp, pct, bands, breakdown } from '../../lib/helpers';
 import { compute } from '../../lib/engine/tax';
+import { cgt, propertyGain, dividendTax, rentalTax, iht, giftTax, S24_TEST_PARAMS } from '../../lib/engine/wealth';
 import { displayDate } from '../../lib/format';
 import { breadcrumbSchema, webPageSchema } from '../../lib/seo';
 import { CONTACT_EMAIL, REVIEW_CYCLE_MONTHS } from '../../data/site-config';
@@ -24,6 +25,18 @@ const checks = [
   ['Revenue Scotland, residential rates', '£875,000, Scotland', 63350, compute({ nation: 'scotland', price: 875000, situation: 'home' }).total],
   ['Welsh Revenue Authority, rates and bands', '£280,000, main rates', 3300, compute({ nation: 'wales', price: 280000, situation: 'home' }).total],
   ['Welsh Revenue Authority, rates and bands', '£260,000 second home', 15950, compute({ nation: 'wales', price: 260000, situation: 'additional' }).total],
+];
+const W = P.wealth;
+const wchecks = [
+  ['GOV.UK, Capital Gains Tax rates, example 1', 'Taxable income £20,000, gains £12,600', 1728, cgt({ gains: 12600, taxableIncome: 20000 }).tax],
+  ['GOV.UK, Capital Gains Tax rates, example 2', 'Taxable income £20,000, gains £52,600', 10842, cgt({ gains: 52600, taxableIncome: 20000 }).tax],
+  ['GOV.UK, letting out your home', '£120,000 gain, lived in half of 15 years: chargeable gain', 54000, propertyGain({ sale: 420000, purchase: 300000, monthsOwned: 180, monthsLived: 90 }).chargeable],
+  ['GOV.UK, tax on dividends', '£29,570 wages, £3,000 dividends: dividend tax', 268.75, dividendTax({ otherIncome: 29570, dividends: 3000 }).dividendTax],
+  ['HMRC, Section 24 case studies (2016 to 2017 bands)', 'John: £35,000 + £18,000 rent, £8,000 interest', 8000, rentalTax({ rent: 18000, expenses: 2000, financeCosts: 8000, otherIncome: 35000 }, S24_TEST_PARAMS).totalTax],
+  ['HMRC, Section 24 case studies (2016 to 2017 bands)', 'Brian: credit limited to profits', 6200, rentalTax({ rent: 20000, expenses: 7000, financeCosts: 15000, otherIncome: 36000 }, S24_TEST_PARAMS).totalTax],
+  ['GOV.UK, Inheritance Tax', '£500,000 estate, basic threshold only', 70000, iht({ estate: 500000 }).tax],
+  ['HMRC, residence nil rate band', 'Flat £100,000 to son, £500,000 to husband: amount taxed', 75000, iht({ estate: 1000000, homeToDescendants: 100000, exempt: 500000 }).chargeable],
+  ['GOV.UK, Inheritance Tax gifts', 'Sally: £100,000 gift 3 years before death', 32000, giftTax(100000, 3, 325000).tax],
 ];
 ---
 <PageLayout title={title} description={description} lang={lang} jsonLd={[webPageSchema({ name: h1, description, path, lang }), breadcrumbSchema([{ name: 'Home', path: route('home', lang) }, { name: h1, path }])]} breadcrumbs={[{ label: h1 }]}>
@@ -52,6 +65,11 @@ const checks = [
     <p>The worked examples published by the three authorities are replayed by automated tests at every build, with the edges of each rule. The table is computed by the engine as you read it.</p>
     <div class="not-prose my-6 overflow-x-auto"><table class="w-full text-sm"><thead><tr><th scope="col" class="border-b border-navy-300 bg-navy-50 px-3 py-2 text-left">Published by</th><th scope="col" class="border-b border-navy-300 bg-navy-50 px-3 py-2 text-left">Case</th><th scope="col" class="border-b border-navy-300 bg-navy-50 px-3 py-2 text-right">Official</th><th scope="col" class="border-b border-navy-300 bg-navy-50 px-3 py-2 text-right">This site</th></tr></thead><tbody>
       {checks.map(([who, c, o, me]) => <tr><td class="border-b border-navy-100 px-3 py-2">{who}</td><td class="border-b border-navy-100 px-3 py-2">{c}</td><td class="tabular-nums border-b border-navy-100 px-3 py-2 text-right">{gbp(o as number)}</td><td class="tabular-nums border-b border-navy-100 px-3 py-2 text-right">{gbp(me as number)}</td></tr>)}
+    </tbody></table></div>
+    <h2>Taxes after the purchase: gains, dividends, rent and inheritance</h2>
+    <p>The calculators for Capital Gains Tax, dividend tax, rental income and Inheritance Tax use a second engine with the 2026 to 2027 values of the same parameter file, read on GOV.UK on {displayDate(W.retrieved_at, 'en-GB')}. Gains above the {gbp(W.cgt.annual_exempt_amount)} allowance are added to taxable income: the part inside the {gbp(W.cgt.basic_rate_band)} basic rate band pays {pct(W.cgt.rate_lower)}, the rest {pct(W.cgt.rate_higher)}. Private Residence Relief assumes the owner lived in the home first and let it afterwards, and adds the final {W.prr.final_period_months} months. Dividends sit on top of other income, with the {gbp(W.dividends.allowance)} allowance taxed at 0% but using band space; Scottish rates apply to earnings and rent, UK rates to dividends. Rental profit is taxed at the owner’s rates, and mortgage interest gives a {pct(W.rental.finance_cost_credit_rate)} credit on the lowest of finance costs, profit and income above the Personal Allowance. Inheritance Tax deducts the residence band, tapered above {gbp(W.iht.taper_threshold)}, then the nil-rate band left after gifts of the last {W.iht.gift_years} years, and counts pension pots only for deaths from 6 April 2027. Not modelled: Business and Agricultural Relief, the {pct(W.iht.charity_rate)} charity rate, savings income, trusts, and capital losses other than those you enter.</p>
+    <div class="not-prose my-6 overflow-x-auto"><table class="w-full text-sm"><thead><tr><th scope="col" class="border-b border-navy-300 bg-navy-50 px-3 py-2 text-left">Published by</th><th scope="col" class="border-b border-navy-300 bg-navy-50 px-3 py-2 text-left">Case</th><th scope="col" class="border-b border-navy-300 bg-navy-50 px-3 py-2 text-right">Official</th><th scope="col" class="border-b border-navy-300 bg-navy-50 px-3 py-2 text-right">This site</th></tr></thead><tbody>
+      {wchecks.map(([who, c, o, me]) => <tr><td class="border-b border-navy-100 px-3 py-2">{who}</td><td class="border-b border-navy-100 px-3 py-2">{c}</td><td class="tabular-nums border-b border-navy-100 px-3 py-2 text-right">{gbp(o as number, Number.isInteger(o) ? 0 : 2)}</td><td class="tabular-nums border-b border-navy-100 px-3 py-2 text-right">{gbp(me as number, Number.isInteger(me) ? 0 : 2)}</td></tr>)}
     </tbody></table></div>
     <h2>The house price data</h2>
     <p>City and area pages use the UK House Price Index for {monthLabel()}, read from HM Land Registry’s public data service on {displayDate(HPI.retrieved_at, 'en-GB')}: the average price of all sales, of sales to first-time buyers and to former owner-occupiers, and by property type. The most recent months of the index are revised as late sales are registered, so an average can move by a few hundred pounds between two releases. Northern Ireland publishes only the all-sales average by district.</p>

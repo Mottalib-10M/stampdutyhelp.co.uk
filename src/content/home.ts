@@ -2,6 +2,7 @@
 import type { FAQ, Helpers } from '../lib/page-types';
 import { P, gbp, pct, t, top, compute } from '../lib/kit';
 import { HPI, monthLabel, taxNation } from '../lib/hpi';
+import { cgt, propertyGain, rentalTax, iht, dividendTax } from '../lib/engine/wealth';
 
 const S = P.sdlt, L = P.lbtt, W = P.ltt;
 const M = monthLabel();
@@ -81,6 +82,16 @@ ${h.breakdown({ nation: 'england', price: p, situation: 'home' }, `SDLT on ${h.g
 <details class="fold"><summary>England and Northern Ireland, SDLT bands</summary>${h.bands('sdlt')}${h.bands('sdltFtb')}</details>
 <details class="fold"><summary>Scotland, LBTT bands</summary>${h.bands('lbtt')}<p>First-time buyer relief raises the nil band to ${h.gbp(L.first_time_buyer_nil_band)}; the ADS adds ${h.pct(L.ads_rate)} of the whole price on additional dwellings.</p></details>
 <details class="fold"><summary>Wales, LTT main and higher bands</summary>${h.bands('ltt')}${h.bands('lttHigher')}</details>
+<h2>After completion: the taxes of owning, letting, selling and passing on</h2>
+<p>Stamp duty is paid once. The property then meets other taxes, each with its own calculator on this site, set to the 2026 to 2027 tax year and tested on HMRC’s examples.</p>
+${h.table(['Situation', 'Example', 'Tax'], [
+  [h.a('rental-income-tax-calculator', 'Letting a flat'), `${h.gbp(1200)} a month, ${h.gbp(6000)} of interest, on a ${h.gbp(42000)} salary`, h.gbp(rentalTax({ rent: 14400, expenses: 2400, financeCosts: 6000, otherIncome: 42000 }).rentalTax)],
+  [h.a('capital-gains-tax-on-property', 'Selling a buy-to-let'), `bought ${h.gbp(210000)}, sold ${h.gbp(325000)}, ${h.gbp(9000)} of costs, higher-rate seller`, h.gbp(cgt({ gains: propertyGain({ sale: 325000, purchase: 210000, buyingCosts: 9000 }).chargeable, taxableIncome: 60000 - h.P.wealth.income_tax.personal_allowance }).tax)],
+  [h.a('private-residence-relief', 'Selling a former home you let'), `${h.gbp(120000)} gain, lived in for half of 15 years`, h.gbp(cgt({ gains: propertyGain({ sale: 420000, purchase: 300000, monthsOwned: 180, monthsLived: 90 }).chargeable, taxableIncome: 60000 - h.P.wealth.income_tax.personal_allowance }).tax)],
+  [h.a('dividend-tax-calculator', 'Dividends from a property company'), `${h.gbp(10000)} on top of a ${h.gbp(30000)} salary`, h.gbp(dividendTax({ otherIncome: 30000, dividends: 10000 }).dividendTax, 2)],
+  [h.a('inheritance-tax-calculator', 'Leaving the home to your children'), `${h.gbp(850000)} estate, ${h.gbp(400000)} house, single parent`, h.gbp(iht({ estate: 850000, homeToDescendants: 400000 }).tax)],
+], 'Taxes after the purchase, 2026 to 2027', ['l', 'l', 'r'])}
+<p>The guides behind them cover the ${h.a('capital-gains-tax-rates', 'Capital Gains Tax rates')} and ${h.a('capital-gains-tax-allowance', 'allowance')}, the ${h.a('capital-gains-tax-60-day-return', '60-day return')} after selling a home, ${h.a('section-24-mortgage-interest', 'Section 24')}, ${h.a('making-tax-digital-landlords', 'Making Tax Digital')} for landlords, the ${h.a('property-allowance-rent-a-room', 'property allowance and Rent a Room')}, ${h.a('dividend-tax', 'dividend tax')}, and for Inheritance Tax the ${h.a('inheritance-tax-threshold', 'threshold')}, the ${h.a('residence-nil-rate-band', 'residence nil-rate band')}, ${h.a('inheritance-tax-gifts', `gifts and the ${h.P.wealth.iht.gift_years}-year rule`)}, ${h.a('inheritance-tax-on-pensions', 'pensions from April 2027')} and ${h.a('inheritance-tax', 'how the tax works')}.</p>
 <h2>Before you make an offer</h2>
 <ol>
 <li>Check which nation the land is in, and whether anyone on the title owns, part-owns or has inherited a home anywhere in the world.</li>
