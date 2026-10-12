@@ -12,6 +12,7 @@ import { P } from '../../lib/engine/params';
 import { formatMoney } from '../../lib/format';
 import { pct } from '../../lib/fmt';
 import { readParams, num, str, updateURL } from '../../lib/url-state';
+import { useBelow, StickyBar } from './StickyResult';
 
 interface Props {
   nation?: Nation; lockNation?: boolean; situation?: Situation; price?: number; company?: boolean; nonResident?: boolean;
@@ -39,6 +40,7 @@ export default function StampDutyCalculator(p: Props) {
   const [kind, setKind] = useState<'residential' | 'nonresidential'>(p.kind ?? 'residential');
   const [copied, setCopied] = useState(false);
   const [today, setToday] = useState<string>(__BUILD_DAY__);
+  const { ref: card, below } = useBelow<HTMLDivElement>();
 
   useEffect(() => {
     setToday(new Date().toISOString().slice(0, 10));
@@ -63,7 +65,8 @@ export default function StampDutyCalculator(p: Props) {
   const copyText = () => { try { navigator.clipboard?.writeText(`${r.taxName} on ${gbp(price)}: ${gbp(r.total)} (${pct(r.effectiveRate)} effective)`); setCopied(true); setTimeout(() => setCopied(false), 1800); } catch { /* clipboard refused */ } };
 
   return (
-    <div className="not-prose rechner my-6 rounded-xl border border-navy-200 bg-white p-4 sm:p-6" data-chrome>
+    <div className="not-prose rechner my-4 rounded-xl border border-navy-200 bg-white p-4 sm:p-6 lg:grid lg:grid-cols-2 lg:items-start lg:gap-6" data-chrome>
+      <div>
       <form className="grid gap-x-5 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
         {!p.lockNation && (
           <Toggle id={`${id}-nation`} label="Where is the property?" className="sm:col-span-2" value={nation} onChange={(v) => setNation(v as Nation)}
@@ -88,8 +91,9 @@ export default function StampDutyCalculator(p: Props) {
             options={[{ value: 'n', label: 'No' }, { value: 'y', label: 'Yes' }]} />
         </div>
       </details>
+      </div>
 
-      <div aria-live="polite" className="result-card mt-6 rounded-xl border border-accent-200 p-4 sm:p-5" style={{ background: 'rgba(1,33,105,0.06)' }}>
+      <div ref={card} aria-live="polite" data-resultat className="result-card mt-6 lg:mt-0 rounded-xl border border-accent-200 p-4 sm:p-5" style={{ background: 'rgba(1,33,105,0.06)' }}>
         <p className="text-sm font-medium text-navy-700">{r.taxName} · {NATION_LABEL[nation]}</p>
         <p className="tabular-nums mt-1 text-4xl font-bold text-navy-900">{gbp(r.total)}</p>
         <p className="mt-1 text-sm text-navy-700">{pct(r.effectiveRate)} of {gbp(price)} · rule applied: {r.rule}</p>
@@ -139,6 +143,7 @@ export default function StampDutyCalculator(p: Props) {
           {copied && <span role="status" className="self-center text-navy-700">Copied</span>}
           {p.methodHref && <a href={p.methodHref} className="self-center font-medium text-accent-700 hover:underline">How this is calculated</a>}
         </div>
+        <StickyBar show={below} label={`${r.taxName} · ${SHORT[nation]}`} value={gbp(r.total)} target={card} />
       </div>
     </div>
   );

@@ -1,7 +1,8 @@
 ---
 /**
- * Renders a page of `src/content/pages/`. Order (RECETTE §9.3, §21): H1 and one-line intro; tool page:
- * the tool, then the folded answer block; guide: the answer block, then its mini-simulator, then the body.
+ * Renders a page of `src/content/pages/`. Order (RECETTE §5 first screen, §9.3, §21): H1 and one-line intro,
+ * the answer block folded to its first sentence, then the tool (or the guide's mini-simulator), then the
+ * « Checked by » line and the body.
  * FAQ (shown and marked up from the same list), related pages, sources and publisher box come from PageLayout.
  */
 import PageLayout from '../layouts/PageLayout.astro';
@@ -45,15 +46,14 @@ const tp = { ...(page.toolProps ?? {}), ...(pl ? { price: pl.avg, nation: taxNat
 ---
 <PageLayout title={page.title} description={page.description} lang={lang} jsonLd={jsonLd} faqs={page.faqs} related={related} sources={sources} breadcrumbs={[{ label: page.nav }]}>
   <article>
-    <header class="mb-6">
-      <p class="text-sm font-semibold uppercase tracking-wide text-accent-700">{GROUP_LABEL[page.group]}</p>
-      <h1 class="mt-1 font-serif text-3xl font-bold text-navy-900 md:text-4xl">{page.h1}</h1>
-      <p class="mt-3 text-lg text-navy-700">{page.intro}</p>
-      <p class="mt-3 text-sm text-navy-600">{ui.reviewedBy} <a href={route('about', lang)} class="underline hover:text-navy-900">{AUTHOR_NAME}</a> · <a href={route('editorial', lang)} class="underline hover:text-navy-900">{ui.editorialPolicy}</a> · <a href={methodHref} class="underline hover:text-navy-900">{label('method')}</a></p>
+    <header class="mb-3">
+      <p class="text-xs font-semibold uppercase tracking-wide text-accent-700 sm:text-sm">{GROUP_LABEL[page.group]}</p>
+      <h1 class="mt-1 font-serif text-[1.75rem] font-bold text-navy-900 max-sm:leading-tight sm:text-3xl md:text-4xl">{page.h1}</h1>
+      <p class="mt-2 text-base text-navy-700 sm:text-lg">{page.intro}</p>
     </header>
     {page.tool ? (
       <>
-        <Clamp text={page.resume} lang={lang} id={`clamp-${page.id}`} class="mb-4" />
+        <Clamp text={page.resume} lang={lang} id={`clamp-${page.id}`} class="mb-3" />
         <div data-outil>
           {page.tool === 'calc' && <StampDutyCalculator client:load {...tp} methodHref={methodHref} idPrefix={page.id.slice(0, 12)} />}
           {page.tool === 'area' && <AreaTable client:load />}
@@ -66,15 +66,17 @@ const tp = { ...(page.toolProps ?? {}), ...(pl ? { price: pl.avg, nation: taxNat
           {page.tool === 'dividend' && <DividendTool client:load />}
           {page.tool === 'rental' && <RentalTool client:load />}
         </div>
+        <p class="mb-8 text-sm text-navy-600">{ui.reviewedBy} <a href={route('about', lang)} class="underline hover:text-navy-900">{AUTHOR_NAME}</a> · <a href={route('editorial', lang)} class="underline hover:text-navy-900">{ui.editorialPolicy}</a> · <a href={methodHref} class="underline hover:text-navy-900">{label('method')}</a></p>
       </>
     ) : (
       <>
-        <p class="mb-6 text-navy-800">{page.resume}</p>
-        {page.mini && <MiniSim client:load kind={page.mini} href={miniHref} />}
+        <Clamp text={page.resume} lang={lang} id={`clamp-${page.id}`} class="mb-3" />
+        {page.mini && <MiniSim client:load spacing="mb-4 mt-3" kind={page.mini} href={miniHref} />}
+        <p class="mb-8 text-sm text-navy-600">{ui.reviewedBy} <a href={route('about', lang)} class="underline hover:text-navy-900">{AUTHOR_NAME}</a> · <a href={route('editorial', lang)} class="underline hover:text-navy-900">{ui.editorialPolicy}</a> · <a href={methodHref} class="underline hover:text-navy-900">{label('method')}</a></p>
       </>
     )}
     <div class="prose prose-slate max-w-none prose-headings:font-serif">
-      {parts.map((p, i) => i % 2 === 0 ? <Fragment set:html={p} /> : <MiniSim client:load kind={p} href={miniHref} />)}
+      {parts.map((p, i) => i % 2 === 0 ? <Fragment set:html={p} /> : <MiniSim client:load kind={p} href={miniHref} secondary={!!(page.tool || page.mini)} />)}
     </div>
   </article>
 </PageLayout>

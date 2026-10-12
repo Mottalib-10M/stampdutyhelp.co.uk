@@ -31,7 +31,7 @@ export default function AreaTable() {
     })
     .sort((a, b) => sort === 'name' ? a.name.localeCompare(b.name) : sort === 'price' ? b.price - a.price : b.tax - a.tax), [nation, basis, situation, sort, q]);
   return (
-    <div className="not-prose my-6 rounded-xl border border-navy-200 bg-white p-4 sm:p-6" data-chrome>
+    <div className="not-prose my-4 rounded-xl border border-navy-200 bg-white p-4 sm:p-6" data-chrome>
       <form className="grid gap-x-5 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
         <SelectField id="area-nation" label="Nation" value={nation} onChange={setNation} options={[{ value: 'all', label: 'Whole UK' }, { value: 'england', label: 'England' }, { value: 'ni', label: 'Northern Ireland' }, { value: 'scotland', label: 'Scotland' }, { value: 'wales', label: 'Wales' }]} />
         <SelectField id="area-basis" label="Price used" value={basis} onChange={setBasis} options={Object.entries(PRICE_FIELD).map(([v, o]) => ({ value: v, label: o.label }))} />
@@ -44,7 +44,7 @@ export default function AreaTable() {
       <p className="mt-4 text-sm text-navy-700">{rows.length} local authorities · sort by{' '}
         {(['tax', 'price', 'name'] as Sort[]).map((s) => <button key={s} type="button" onClick={() => setSort(s)} aria-pressed={sort === s} className={`mx-1 rounded px-2 py-0.5 ${sort === s ? 'bg-accent-600 text-white' : 'border border-navy-300 text-navy-800'}`}>{s === 'tax' ? 'tax' : s === 'price' ? 'price' : 'name'}</button>)}
       </p>
-      <div className="mt-3 max-h-[36rem] overflow-auto">
+      <div data-resultat className="mt-3 max-h-[36rem] overflow-auto">
         <table className="w-full text-sm">
           <caption className="sr-only">Tax on the average price by local authority</caption>
           <thead className="sticky top-0 bg-white"><tr className="text-left text-xs uppercase tracking-wide text-navy-600"><th scope="col" className="py-2 pr-2">Area</th><th scope="col" className="py-2 pr-2">Tax</th><th scope="col" className="py-2 text-right">Average price</th><th scope="col" className="py-2 text-right">Tax due</th><th scope="col" className="py-2 text-right">Rate</th></tr></thead>
