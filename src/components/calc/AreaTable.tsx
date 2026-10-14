@@ -32,7 +32,7 @@ export default function AreaTable() {
     .sort((a, b) => sort === 'name' ? a.name.localeCompare(b.name) : sort === 'price' ? b.price - a.price : b.tax - a.tax), [nation, basis, situation, sort, q]);
   return (
     <div className="not-prose my-4 rounded-xl border border-navy-200 bg-white p-4 sm:p-6" data-chrome>
-      <form className="grid gap-x-5 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
+      <form className="grid content-start gap-x-5 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
         <SelectField id="area-nation" label="Nation" value={nation} onChange={setNation} options={[{ value: 'all', label: 'Whole UK' }, { value: 'england', label: 'England' }, { value: 'ni', label: 'Northern Ireland' }, { value: 'scotland', label: 'Scotland' }, { value: 'wales', label: 'Wales' }]} />
         <SelectField id="area-basis" label="Price used" value={basis} onChange={setBasis} options={Object.entries(PRICE_FIELD).map(([v, o]) => ({ value: v, label: o.label }))} />
         <SelectField id="area-sit" label="Buyer" value={situation} onChange={(v) => setSituation(v as Situation)} options={[{ value: 'home', label: 'Standard rates (one home)' }, { value: 'additional', label: 'Additional property' }]} help={basis === 'ftb' && situation !== 'additional' ? 'First-time buyer relief applied where it exists.' : undefined} />

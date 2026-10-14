@@ -26,7 +26,7 @@ export default function RefundTool({ nation: initial = 'england' }: { nation?: N
   return (
     <div className="not-prose my-4 rounded-xl border border-navy-200 bg-white p-4 sm:p-6 lg:grid lg:grid-cols-2 lg:items-start lg:gap-6" data-chrome>
       <div>
-      <form className="grid gap-x-5 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
+      <form className="grid content-start gap-x-5 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
         <SelectField id="rf-nation" label="Where did you buy?" value={nation} onChange={(v) => setNation(v as Nation)} options={(['england', 'scotland', 'wales'] as Nation[]).map((n) => ({ value: n, label: NATION_LABEL[n] }))} />
         <NumberField id="rf-price" label="Price of the new home" value={price} onChange={setPrice} unit="£" max={50_000_000} />
         <div className="grid grid-rows-subgrid row-span-3 content-start gap-y-0">

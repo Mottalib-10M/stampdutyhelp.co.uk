@@ -67,7 +67,7 @@ export default function StampDutyCalculator(p: Props) {
   return (
     <div className="not-prose rechner my-4 rounded-xl border border-navy-200 bg-white p-4 sm:p-6 lg:grid lg:grid-cols-2 lg:items-start lg:gap-6" data-chrome>
       <div>
-      <form className="grid gap-x-5 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
+      <form className="grid content-start gap-x-5 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
         {!p.lockNation && (
           <Toggle id={`${id}-nation`} label="Where is the property?" className="sm:col-span-2" value={nation} onChange={(v) => setNation(v as Nation)}
             options={NATIONS.map((n) => ({ value: n, label: SHORT[n] }))} />

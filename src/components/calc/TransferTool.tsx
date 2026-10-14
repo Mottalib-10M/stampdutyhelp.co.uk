@@ -19,7 +19,7 @@ export default function TransferTool() {
   return (
     <div className="not-prose my-4 rounded-xl border border-navy-200 bg-white p-4 sm:p-6 lg:grid lg:grid-cols-2 lg:items-start lg:gap-6" data-chrome>
       <div>
-      <form className="grid gap-x-5 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
+      <form className="grid content-start gap-x-5 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
         <SelectField id="tf-nation" label="Where is the property?" value={nation} onChange={(v) => setNation(v as Nation)} options={(['england', 'scotland', 'wales'] as Nation[]).map((n) => ({ value: n, label: NATION_LABEL[n] }))} />
         <NumberField id="tf-mortgage" label="Outstanding mortgage" value={mortgage} onChange={setMortgage} unit="£" max={50_000_000} />
         <NumberField id="tf-share" label="Share of the property you take on" value={share} onChange={setShare} unit="%" max={100} />

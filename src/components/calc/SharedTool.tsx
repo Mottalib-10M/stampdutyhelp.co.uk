@@ -21,7 +21,7 @@ export default function SharedTool() {
   return (
     <div className="not-prose my-4 rounded-xl border border-navy-200 bg-white p-4 sm:p-6 lg:grid lg:grid-cols-2 lg:items-start lg:gap-6" data-chrome>
       <div>
-      <form className="grid gap-x-5 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
+      <form className="grid content-start gap-x-5 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
         <NumberField id="so-mv" label="Full market value" value={mv} onChange={setMv} unit="£" max={10_000_000} help="As stated in the shared ownership lease." />
         <NumberField id="so-share" label="Share you buy now" value={share} onChange={setShare} unit="%" max={100} />
         <Toggle id="so-ftb" label="Every buyer a first-time buyer?" value={ftb ? 'y' : 'n'} onChange={(v) => setFtb(v === 'y')} options={[{ value: 'n', label: 'No' }, { value: 'y', label: 'Yes' }]} />

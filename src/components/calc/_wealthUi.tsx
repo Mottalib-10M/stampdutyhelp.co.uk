@@ -17,4 +17,4 @@ export function ResultCard({ label, value, sub, rows, note }: { label: string; v
   );
 }
 export const Shell = ({ children }: { children: ReactNode }) => <div className="not-prose my-4 rounded-xl border border-navy-200 bg-white p-4 sm:p-6 lg:grid lg:grid-cols-2 lg:items-start lg:gap-6" data-chrome>{children}</div>;
-export const Form = ({ children }: { children: ReactNode }) => <form className="grid gap-x-5 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>{children}</form>;
+export const Form = ({ children }: { children: ReactNode }) => <form className="grid content-start gap-x-5 gap-y-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>{children}</form>;
